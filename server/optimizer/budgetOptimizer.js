@@ -23,9 +23,10 @@ export function calculateBudgetBreakdown(trip, itineraryItems = []) {
 
   const rates = tierRates[tier] || tierRates.mid;
 
-  // 1. Accommodation
-  const nights = Math.max(1, numDays - 1);
-  const accommodation = rates.hotelPerNight * nights;
+  // 1. Accommodation (Hotel room count x nights x room rate)
+  const nights = Math.max(0, numDays - 1);
+  const roomsCount = Math.max(1, Math.ceil((adults + children) / 2));
+  const accommodation = rates.hotelPerNight * nights * roomsCount;
 
   // 2. Transport
   const transport = rates.transportDaily * numDays;
@@ -61,13 +62,20 @@ export function calculateBudgetBreakdown(trip, itineraryItems = []) {
     miscellaneous: misc,
   };
 
+  const overBudget = estimatedSpend > total;
+  const overBudgetAmount = overBudget ? estimatedSpend - total : 0;
+
   return {
     totalBudget: total,
     currency,
     estimatedSpend,
-    remaining,
+    remaining: total - estimatedSpend,
+    overBudget,
+    overBudgetAmount,
     categories: categoryBreakdown,
     numDays,
+    nights,
+    roomsCount,
     totalPeople,
   };
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useTripStore } from "../../store/useTripStore";
 import { fetchDestinations } from "../../services/api";
 import { ProgressChecklist } from "./ProgressChecklist";
-import { Compass, Calendar, Users, DollarSign, Heart, Sliders, MapPin, ArrowRight } from "lucide-react";
+import { Compass, Calendar, Users, DollarSign, Heart, Sliders, MapPin, ArrowRight, AlertCircle } from "lucide-react";
 
 export const TripWizard: React.FC = () => {
   const { generateTrip, isGenerating, generationStage } = useTripStore();
@@ -19,6 +19,7 @@ export const TripWizard: React.FC = () => {
   const [pace, setPace] = useState<"relaxed" | "balanced" | "packed">("balanced");
   const [walking, setWalking] = useState<"low" | "medium" | "high">("medium");
   const [tier, setTier] = useState<"budget" | "mid" | "luxury">("mid");
+  const [formError, setFormError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchDestinations()
@@ -39,13 +40,40 @@ export const TripWizard: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setFormError(null);
 
-    const selectedDestObj = destinations.find((d) => d.name.toLowerCase() === destination.toLowerCase());
+    // Input Validations
+    if (!destination.trim()) {
+      setFormError("Please enter a valid destination.");
+      return;
+    }
+    if (!startDate || !endDate) {
+      setFormError("Please specify both start and end dates.");
+      return;
+    }
+    if (new Date(endDate) < new Date(startDate)) {
+      setFormError("End date cannot be earlier than start date.");
+      return;
+    }
+    if (adults < 1) {
+      setFormError("At least 1 adult traveler is required.");
+      return;
+    }
+    if (budgetTotal <= 0) {
+      setFormError("Trip budget must be greater than 0.");
+      return;
+    }
+    if (selectedInterests.length === 0) {
+      setFormError("Please select at least one travel interest.");
+      return;
+    }
+
+    const selectedDestObj = destinations.find((d) => d.name?.toLowerCase() === destination.toLowerCase());
     const lat = selectedDestObj ? selectedDestObj.lat : 26.9124;
     const lng = selectedDestObj ? selectedDestObj.lng : 75.7873;
 
     const payload = {
-      destination,
+      destination: destination.trim(),
       startDate,
       endDate,
       travellers: { adults, children, elderly: 0 },
@@ -83,10 +111,17 @@ export const TripWizard: React.FC = () => {
           <Compass className="w-5 h-5" />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-white">Create Custom Adaptive Trip</h2>
-          <p className="text-xs text-slate-400">Configure parameters for AI candidate optimization.</p>
+          <h2 className="text-xl font-bold text-white">Configure Your Trip</h2>
+          <p className="text-xs text-slate-400">Autonomous 17-step itinerary generation engine.</p>
         </div>
       </div>
+
+      {formError && (
+        <div className="p-4 bg-red-950/80 border border-red-800 rounded-2xl text-red-200 text-xs flex items-center gap-2">
+          <AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
+          <span>{formError}</span>
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} className="space-y-5">
         {/* Destination */}
@@ -100,13 +135,13 @@ export const TripWizard: React.FC = () => {
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
             className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-2xl px-4 py-2.5 text-sm text-white outline-none transition"
-            placeholder="Type or select destination (e.g. Jaipur, Munnar, Goa, Paris...)"
+            placeholder="Type or select destination (e.g. Jaipur, Munnar, Goa, Agra, Delhi...)"
             required
           />
           <datalist id="dest-list">
-            {destinations.map((d) => (
-              <option key={d.id} value={d.name}>
-                {d.name}, {d.country}
+            {destinations.map((d, i) => (
+              <option key={i} value={d.name || d.city}>
+                {d.name || d.city}, {d.state || d.country}
               </option>
             ))}
           </datalist>
@@ -253,7 +288,7 @@ export const TripWizard: React.FC = () => {
 
         <button
           type="submit"
-          className="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-2xl font-bold text-sm shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2 transition"
+          className="w-full py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-2xl font-bold text-sm shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2 transition"
         >
           <span>Generate Optimized Itinerary</span>
           <ArrowRight className="w-4 h-4" />

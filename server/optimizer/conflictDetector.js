@@ -20,6 +20,22 @@ export function detectConflicts(trip) {
   const dayNames = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
   const startDateObj = trip.startDate ? new Date(trip.startDate) : new Date();
 
+  // 1. Check duplicate activities across the entire itinerary
+  const seenActivities = new Set();
+  for (const item of itinerary) {
+    if (seenActivities.has(item.activityId) && !item.activityId.includes("food")) {
+      const act = activityMap.get(item.activityId);
+      conflicts.push({
+        type: "duplicate_activity",
+        severity: "warning",
+        message: `Duplicate activity detected: ${act ? act.name : item.activityId} is scheduled more than once in this itinerary.`,
+        activityIds: [item.activityId]
+      });
+    } else {
+      seenActivities.add(item.activityId);
+    }
+  }
+
   // Group items by day
   const itemsByDay = {};
   for (const item of itinerary) {
@@ -44,7 +60,17 @@ export function detectConflicts(trip) {
 
       if (!curAct) continue;
 
-      // 1. Walking preference conflict
+      // 2. Missing location coordinates check
+      if (!curAct.lat || !curAct.lng || (curAct.lat === 0 && curAct.lng === 0)) {
+        conflicts.push({
+          type: "missing_location",
+          severity: "info",
+          message: `Location coordinates for ${curAct.name} are missing or estimated.`,
+          activityIds: [curAct.id],
+        });
+      }
+
+      // 3. Walking preference conflict
       if (trip.preferences && trip.preferences.walking === "low" && curAct.walkingIntensity === 3) {
         conflicts.push({
           type: "preference_conflict",
@@ -54,11 +80,11 @@ export function detectConflicts(trip) {
         });
       }
 
-      // 2. Opening hours check
+      // 4. Opening hours check
       if (curAct.openingHours && curAct.openingHours.value) {
         const hours = curAct.openingHours.value[dayName];
 
-        if (hours === "closed") {
+        if (hours === "closed" || (curAct.closedDays && curAct.closedDays.includes(dayName))) {
           conflicts.push({
             type: "opening_hours",
             severity: "critical",
@@ -69,7 +95,7 @@ export function detectConflicts(trip) {
           conflicts.push({
             type: "unverified_hours",
             severity: "info",
-            message: `Opening hours for ${curAct.name} could not be verified from live data sources.`,
+            message: `Opening hours for ${curAct.name} are estimated.`,
             activityIds: [curAct.id],
           });
         } else if (Array.isArray(hours) && hours.length > 0) {
@@ -86,7 +112,7 @@ export function detectConflicts(trip) {
             conflicts.push({
               type: "opening_hours",
               severity: "warning",
-              message: `${curAct.name} is scheduled (${current.startTime}-${current.endTime}), outside its opening hours.`,
+              message: `${curAct.name} is scheduled (${current.startTime}-${current.endTime}), outside its opening hours on ${dayName.toUpperCase()}.`,
               activityIds: [curAct.id],
             });
           }
@@ -99,7 +125,7 @@ export function detectConflicts(trip) {
         const nextAct = activityMap.get(next.activityId);
         const nextStart = timeToMin(next.startTime);
 
-        // 3. Time Overlap
+        // 5. Time Overlap
         if (curEnd > nextStart) {
           conflicts.push({
             type: "time_overlap",
@@ -108,7 +134,7 @@ export function detectConflicts(trip) {
             activityIds: [current.activityId, next.activityId],
           });
         } else if (nextAct) {
-          // 4. Insufficient Travel Time
+          // 6. Insufficient Travel Time
           const requiredTravel = calculateTravelTimeMin(curAct.lat, curAct.lng, nextAct.lat, nextAct.lng, "drive").timeMin;
           const availableGap = nextStart - curEnd;
           if (availableGap < requiredTravel) {
@@ -124,14 +150,14 @@ export function detectConflicts(trip) {
     }
   }
 
-  // 5. Over Budget Check
+  // 7. Over Budget Check
   if (trip.budget) {
     const budgetInfo = calculateBudgetBreakdown(trip, itinerary);
-    if (budgetInfo.remaining < 0) {
+    if (budgetInfo.overBudget) {
       conflicts.push({
         type: "over_budget",
         severity: "critical",
-        message: `Estimated trip spend (${trip.budget.currency} ${budgetInfo.estimatedSpend.toLocaleString()}) exceeds budget (${trip.budget.currency} ${trip.budget.total.toLocaleString()}) by ${trip.budget.currency} ${Math.abs(budgetInfo.remaining).toLocaleString()}.`,
+        message: `Estimated trip spend (${trip.budget.currency} ₹${budgetInfo.estimatedSpend.toLocaleString()}) exceeds target budget (${trip.budget.currency} ₹${trip.budget.total.toLocaleString()}) by ₹${budgetInfo.overBudgetAmount.toLocaleString()}.`,
         activityIds: [],
       });
     }
