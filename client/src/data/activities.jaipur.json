@@ -1,0 +1,789 @@
+[
+  {
+    "id": "jpr_amber_fort",
+    "name": "Amber Fort & Palace",
+    "category": "attraction",
+    "tags": ["history", "architecture", "culture", "fort"],
+    "description": "Majestic hilltop fort featuring Rajput-Mughal architectural synthesis, Sheesh Mahal (Mirror Palace), and panoramic hill views.",
+    "lat": 26.9855,
+    "lng": 75.8513,
+    "area": "Amer",
+    "indoor": false,
+    "walkingIntensity": 3,
+    "durationMin": 150,
+    "costPerPerson": { "value": 500, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["08:00", "17:30"]],
+        "tue": [["08:00", "17:30"]],
+        "wed": [["08:00", "17:30"]],
+        "thu": [["08:00", "17:30"]],
+        "fri": [["08:00", "17:30"]],
+        "sat": [["08:00", "17:30"]],
+        "sun": [["08:00", "17:30"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.8,
+    "popularity": 0.98,
+    "status": "available"
+  },
+  {
+    "id": "jpr_jaigarh_fort",
+    "name": "Jaigarh Fort & Jaivana Cannon",
+    "category": "attraction",
+    "tags": ["history", "architecture", "fort"],
+    "description": "Formidable fortress overlooking Amber Fort, housing Jaivana — once the world's largest cannon on wheels.",
+    "lat": 26.9850,
+    "lng": 75.8456,
+    "area": "Amer",
+    "indoor": false,
+    "walkingIntensity": 2,
+    "durationMin": 90,
+    "costPerPerson": { "value": 200, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["09:00", "17:00"]],
+        "tue": [["09:00", "17:00"]],
+        "wed": [["09:00", "17:00"]],
+        "thu": [["09:00", "17:00"]],
+        "fri": [["09:00", "17:00"]],
+        "sat": [["09:00", "17:00"]],
+        "sun": [["09:00", "17:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.5,
+    "popularity": 0.85,
+    "status": "available"
+  },
+  {
+    "id": "jpr_nahargarh_fort",
+    "name": "Nahargarh Fort & Sunset Point",
+    "category": "attraction",
+    "tags": ["history", "architecture", "nature", "photography"],
+    "description": "Perched on Aravalli hills with stunning panoramic sunset vistas over the Pink City skyline.",
+    "lat": 26.9372,
+    "lng": 75.8156,
+    "area": "Amer",
+    "indoor": false,
+    "walkingIntensity": 2,
+    "durationMin": 100,
+    "costPerPerson": { "value": 200, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["10:00", "20:00"]],
+        "tue": [["10:00", "20:00"]],
+        "wed": [["10:00", "20:00"]],
+        "thu": [["10:00", "20:00"]],
+        "fri": [["10:00", "20:00"]],
+        "sat": [["10:00", "20:00"]],
+        "sun": [["10:00", "20:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.6,
+    "popularity": 0.90,
+    "status": "available"
+  },
+  {
+    "id": "jpr_city_palace",
+    "name": "Jaipur City Palace & Museum",
+    "category": "museum",
+    "tags": ["history", "architecture", "culture", "museum"],
+    "description": "Royal residence blending Rajasthani and Mughal court architecture, displaying royal costumes, armory, and textiles.",
+    "lat": 26.9258,
+    "lng": 75.8237,
+    "area": "Old City",
+    "indoor": true,
+    "walkingIntensity": 2,
+    "durationMin": 120,
+    "costPerPerson": { "value": 300, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["09:30", "17:00"]],
+        "tue": [["09:30", "17:00"]],
+        "wed": [["09:30", "17:00"]],
+        "thu": [["09:30", "17:00"]],
+        "fri": [["09:30", "17:00"]],
+        "sat": [["09:30", "17:00"]],
+        "sun": [["09:30", "17:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.7,
+    "popularity": 0.95,
+    "status": "available"
+  },
+  {
+    "id": "jpr_hawa_mahal",
+    "name": "Hawa Mahal (Palace of Winds)",
+    "category": "attraction",
+    "tags": ["architecture", "history", "photography"],
+    "description": "Iconic pink sandstone facade with 953 honeycombed jharokhas designed for royal women to observe street festivals.",
+    "lat": 26.9239,
+    "lng": 75.8267,
+    "area": "Old City",
+    "indoor": false,
+    "walkingIntensity": 1,
+    "durationMin": 60,
+    "costPerPerson": { "value": 100, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["09:00", "16:30"]],
+        "tue": [["09:00", "16:30"]],
+        "wed": [["09:00", "16:30"]],
+        "thu": [["09:00", "16:30"]],
+        "fri": [["09:00", "16:30"]],
+        "sat": [["09:00", "16:30"]],
+        "sun": [["09:00", "16:30"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.6,
+    "popularity": 0.96,
+    "status": "available"
+  },
+  {
+    "id": "jpr_jantar_mantar",
+    "name": "Jantar Mantar Astronomical Observatory",
+    "category": "museum",
+    "tags": ["history", "architecture", "technology", "museum"],
+    "description": "UNESCO World Heritage site featuring 19 architectural astronomical instruments built by Maharaja Sawai Jai Singh II.",
+    "lat": 26.9247,
+    "lng": 75.8246,
+    "area": "Old City",
+    "indoor": false,
+    "walkingIntensity": 2,
+    "durationMin": 75,
+    "costPerPerson": { "value": 200, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["09:00", "17:00"]],
+        "tue": [["09:00", "17:00"]],
+        "wed": [["09:00", "17:00"]],
+        "thu": [["09:00", "17:00"]],
+        "fri": [["09:00", "17:00"]],
+        "sat": [["09:00", "17:00"]],
+        "sun": [["09:00", "17:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.5,
+    "popularity": 0.88,
+    "status": "available"
+  },
+  {
+    "id": "jpr_albert_hall",
+    "name": "Albert Hall Museum (State Museum)",
+    "category": "museum",
+    "tags": ["history", "museum", "culture", "architecture"],
+    "description": "Indo-Saracenic masterpiece housing rare artifacts, Egyptian mummy, carpets, ivory, and sculpture collections.",
+    "lat": 26.9116,
+    "lng": 75.8195,
+    "area": "Central",
+    "indoor": true,
+    "walkingIntensity": 1,
+    "durationMin": 90,
+    "costPerPerson": { "value": 150, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["09:00", "17:00"], ["19:00", "22:00"]],
+        "tue": [["09:00", "17:00"], ["19:00", "22:00"]],
+        "wed": [["09:00", "17:00"], ["19:00", "22:00"]],
+        "thu": [["09:00", "17:00"], ["19:00", "22:00"]],
+        "fri": [["09:00", "17:00"], ["19:00", "22:00"]],
+        "sat": [["09:00", "17:00"], ["19:00", "22:00"]],
+        "sun": [["09:00", "17:00"], ["19:00", "22:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.6,
+    "popularity": 0.91,
+    "status": "available"
+  },
+  {
+    "id": "jpr_jal_mahal",
+    "name": "Jal Mahal Viewpoint & Promenade",
+    "category": "attraction",
+    "tags": ["architecture", "nature", "photography"],
+    "description": "Picturesque water palace standing in Man Sagar Lake, surrounded by Aravalli hills and waterfowl.",
+    "lat": 26.9534,
+    "lng": 75.8462,
+    "area": "Amer",
+    "indoor": false,
+    "walkingIntensity": 1,
+    "durationMin": 45,
+    "costPerPerson": { "value": 0, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["06:00", "21:00"]],
+        "tue": [["06:00", "21:00"]],
+        "wed": [["06:00", "21:00"]],
+        "thu": [["06:00", "21:00"]],
+        "fri": [["06:00", "21:00"]],
+        "sat": [["06:00", "21:00"]],
+        "sun": [["06:00", "21:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.4,
+    "popularity": 0.89,
+    "status": "available"
+  },
+  {
+    "id": "jpr_johari_bazaar",
+    "name": "Johari Bazaar & Bapu Bazaar Shopping",
+    "category": "shopping",
+    "tags": ["shopping", "culture", "food"],
+    "description": "Vibrant pink markets famous for Kundan jewelry, Bandhani textiles, Mojari footwear, and local handicrafts.",
+    "lat": 26.9197,
+    "lng": 75.8258,
+    "area": "Old City",
+    "indoor": false,
+    "walkingIntensity": 2,
+    "durationMin": 120,
+    "costPerPerson": { "value": 0, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["11:00", "20:30"]],
+        "tue": [["11:00", "20:30"]],
+        "wed": [["11:00", "20:30"]],
+        "thu": [["11:00", "20:30"]],
+        "fri": [["11:00", "20:30"]],
+        "sat": [["11:00", "20:30"]],
+        "sun": [["11:00", "20:30"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.5,
+    "popularity": 0.92,
+    "status": "available"
+  },
+  {
+    "id": "jpr_patrika_gate",
+    "name": "Patrika Gate at Jawahar Circle",
+    "category": "attraction",
+    "tags": ["architecture", "photography", "culture"],
+    "description": "Intricately hand-painted archway showcasing Rajasthan's royal history, mythology, and vivid frescoes.",
+    "lat": 26.8286,
+    "lng": 75.8055,
+    "area": "South",
+    "indoor": false,
+    "walkingIntensity": 1,
+    "durationMin": 45,
+    "costPerPerson": { "value": 0, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["06:00", "22:00"]],
+        "tue": [["06:00", "22:00"]],
+        "wed": [["06:00", "22:00"]],
+        "thu": [["06:00", "22:00"]],
+        "fri": [["06:00", "22:00"]],
+        "sat": [["06:00", "22:00"]],
+        "sun": [["06:00", "22:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.7,
+    "popularity": 0.93,
+    "status": "available"
+  },
+  {
+    "id": "jpr_chokhi_dhani",
+    "name": "Chokhi Dhani Ethnic Village Resort",
+    "category": "entertainment",
+    "tags": ["culture", "food", "entertainment", "family"],
+    "description": "Authentic Rajasthani village fair experience with folk dance, camel rides, puppet shows, and traditional thali dining.",
+    "lat": 26.7667,
+    "lng": 75.8361,
+    "area": "South",
+    "indoor": false,
+    "walkingIntensity": 2,
+    "durationMin": 180,
+    "costPerPerson": { "value": 1100, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["17:00", "23:00"]],
+        "tue": [["17:00", "23:00"]],
+        "wed": [["17:00", "23:00"]],
+        "thu": [["17:00", "23:00"]],
+        "fri": [["17:00", "23:00"]],
+        "sat": [["17:00", "23:00"]],
+        "sun": [["17:00", "23:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.5,
+    "popularity": 0.90,
+    "status": "available"
+  },
+  {
+    "id": "jpr_galta_ji",
+    "name": "Galta Ji Temple (Monkey Temple)",
+    "category": "spiritual",
+    "tags": ["spiritual", "history", "nature"],
+    "description": "Ancient Hindu pilgrimage site in a narrow mountain pass with natural water tanks and sacred macaques.",
+    "lat": 26.9171,
+    "lng": 75.8569,
+    "area": "East",
+    "indoor": false,
+    "walkingIntensity": 3,
+    "durationMin": 90,
+    "costPerPerson": { "value": 50, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["06:00", "19:00"]],
+        "tue": [["06:00", "19:00"]],
+        "wed": [["06:00", "19:00"]],
+        "thu": [["06:00", "19:00"]],
+        "fri": [["06:00", "19:00"]],
+        "sat": [["06:00", "19:00"]],
+        "sun": [["06:00", "19:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": false,
+    "rating": 4.3,
+    "popularity": 0.78,
+    "status": "available"
+  },
+  {
+    "id": "jpr_birla_mandir",
+    "name": "Birla Mandir (Laxmi Narayan Temple)",
+    "category": "spiritual",
+    "tags": ["spiritual", "architecture", "culture"],
+    "description": "Luminous pure white marble temple at the base of Moti Dungri hill illuminated beautifully in the evening.",
+    "lat": 26.8926,
+    "lng": 75.8152,
+    "area": "Central",
+    "indoor": true,
+    "walkingIntensity": 1,
+    "durationMin": 60,
+    "costPerPerson": { "value": 0, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["08:00", "12:00"], ["16:00", "21:00"]],
+        "tue": [["08:00", "12:00"], ["16:00", "21:00"]],
+        "wed": [["08:00", "12:00"], ["16:00", "21:00"]],
+        "thu": [["08:00", "12:00"], ["16:00", "21:00"]],
+        "fri": [["08:00", "12:00"], ["16:00", "21:00"]],
+        "sat": [["08:00", "12:00"], ["16:00", "21:00"]],
+        "sun": [["08:00", "12:00"], ["16:00", "21:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.6,
+    "popularity": 0.86,
+    "status": "available"
+  },
+  {
+    "id": "jpr_sisodia_gardens",
+    "name": "Sisodia Rani Palace & Garden",
+    "category": "nature",
+    "tags": ["nature", "history", "architecture"],
+    "description": "Terraced royal gardens featuring fountains, water channels, and painted pavilions depicting Lord Krishna themes.",
+    "lat": 26.8833,
+    "lng": 75.8667,
+    "area": "East",
+    "indoor": false,
+    "walkingIntensity": 2,
+    "durationMin": 60,
+    "costPerPerson": { "value": 100, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["08:00", "18:00"]],
+        "tue": [["08:00", "18:00"]],
+        "wed": [["08:00", "18:00"]],
+        "thu": [["08:00", "18:00"]],
+        "fri": [["08:00", "18:00"]],
+        "sat": [["08:00", "18:00"]],
+        "sun": [["08:00", "18:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.2,
+    "popularity": 0.72,
+    "status": "available"
+  },
+  {
+    "id": "jpr_anokhi_museum",
+    "name": "Anokhi Museum of Hand Printing",
+    "category": "museum",
+    "tags": ["museum", "culture", "history", "shopping"],
+    "description": "Restored haveli near Amer Fort dedicated to the preservation of traditional block printing techniques and textiles.",
+    "lat": 26.9890,
+    "lng": 75.8510,
+    "area": "Amer",
+    "indoor": true,
+    "walkingIntensity": 1,
+    "durationMin": 60,
+    "costPerPerson": { "value": 100, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": "closed",
+        "tue": [["10:30", "17:00"]],
+        "wed": [["10:30", "17:00"]],
+        "thu": [["10:30", "17:00"]],
+        "fri": [["10:30", "17:00"]],
+        "sat": [["10:30", "17:00"]],
+        "sun": [["11:00", "16:30"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.5,
+    "popularity": 0.80,
+    "status": "available"
+  },
+  {
+    "id": "jpr_laxmi_misthan_bhandar",
+    "name": "Laxmi Misthan Bhandar (LMB)",
+    "category": "food",
+    "tags": ["food", "culture"],
+    "description": "Legendary sweet shop and restaurant serving authentic Rajasthani Ghewar, Pyaz Kachori, and royal thali.",
+    "lat": 26.9215,
+    "lng": 75.8252,
+    "area": "Old City",
+    "indoor": true,
+    "walkingIntensity": 1,
+    "durationMin": 60,
+    "costPerPerson": { "value": 450, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["08:00", "22:30"]],
+        "tue": [["08:00", "22:30"]],
+        "wed": [["08:00", "22:30"]],
+        "thu": [["08:00", "22:30"]],
+        "fri": [["08:00", "22:30"]],
+        "sat": [["08:00", "22:30"]],
+        "sun": [["08:00", "22:30"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.6,
+    "popularity": 0.94,
+    "mealType": "lunch",
+    "status": "available"
+  },
+  {
+    "id": "jpr_rawat_mishthan_bhandar",
+    "name": "Rawat Mishthan Bhandar (Kachori Specialty)",
+    "category": "food",
+    "tags": ["food"],
+    "description": "Famous culinary institution near Jaipur Railway Station world-renowned for hot Mawa and Pyaaz Kachoris.",
+    "lat": 26.9200,
+    "lng": 75.7950,
+    "area": "Central",
+    "indoor": true,
+    "walkingIntensity": 1,
+    "durationMin": 45,
+    "costPerPerson": { "value": 200, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["06:00", "22:00"]],
+        "tue": [["06:00", "22:00"]],
+        "wed": [["06:00", "22:00"]],
+        "thu": [["06:00", "22:00"]],
+        "fri": [["06:00", "22:00"]],
+        "sat": [["06:00", "22:00"]],
+        "sun": [["06:00", "22:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.7,
+    "popularity": 0.95,
+    "mealType": "breakfast",
+    "status": "available"
+  },
+  {
+    "id": "jpr_tatto_cafe",
+    "name": "Tattoo Cafe & Lounge (Hawa Mahal View)",
+    "category": "food",
+    "tags": ["food", "photography", "architecture"],
+    "description": "Rooftop café offering spectacular head-on views of Hawa Mahal facade alongside specialty coffees and snacks.",
+    "lat": 26.9242,
+    "lng": 75.8270,
+    "area": "Old City",
+    "indoor": false,
+    "walkingIntensity": 1,
+    "durationMin": 60,
+    "costPerPerson": { "value": 350, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["08:00", "23:00"]],
+        "tue": [["08:00", "23:00"]],
+        "wed": [["08:00", "23:00"]],
+        "thu": [["08:00", "23:00"]],
+        "fri": [["08:00", "23:00"]],
+        "sat": [["08:00", "23:00"]],
+        "sun": [["08:00", "23:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.5,
+    "popularity": 0.89,
+    "mealType": "snack",
+    "status": "available"
+  },
+  {
+    "id": "jpr_1135_ad",
+    "name": "1135 AD Fine Dining at Amer Fort",
+    "category": "food",
+    "tags": ["food", "history", "architecture"],
+    "description": "Regal fine dining inside Amer Fort with silver thalis, crystal chandeliers, and traditional Laal Maas.",
+    "lat": 26.9858,
+    "lng": 75.8515,
+    "area": "Amer",
+    "indoor": true,
+    "walkingIntensity": 1,
+    "durationMin": 90,
+    "costPerPerson": { "value": 1800, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["11:00", "23:00"]],
+        "tue": [["11:00", "23:00"]],
+        "wed": [["11:00", "23:00"]],
+        "thu": [["11:00", "23:00"]],
+        "fri": [["11:00", "23:00"]],
+        "sat": [["11:00", "23:00"]],
+        "sun": [["11:00", "23:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.7,
+    "popularity": 0.88,
+    "mealType": "dinner",
+    "status": "available"
+  },
+  {
+    "id": "jpr_cafferio",
+    "name": "Caffe Palladio Jaipur",
+    "category": "food",
+    "tags": ["food", "architecture"],
+    "description": "Italian-style pastel aesthetic café with lush courtyards, painted floral murals, and artisan pastries.",
+    "lat": 26.9065,
+    "lng": 75.8012,
+    "area": "Central",
+    "indoor": true,
+    "walkingIntensity": 1,
+    "durationMin": 60,
+    "costPerPerson": { "value": 600, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["12:00", "23:00"]],
+        "tue": [["12:00", "23:00"]],
+        "wed": [["12:00", "23:00"]],
+        "thu": [["12:00", "23:00"]],
+        "fri": [["12:00", "23:00"]],
+        "sat": [["12:00", "23:00"]],
+        "sun": [["12:00", "23:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.6,
+    "popularity": 0.86,
+    "mealType": "snack",
+    "status": "available"
+  },
+  {
+    "id": "jpr_handi_restaurant",
+    "name": "Handi Restaurant (MI Road)",
+    "category": "food",
+    "tags": ["food"],
+    "description": "Award-winning North Indian and Mughlai restaurant renowned for Handi Meat and tandoori delicacies.",
+    "lat": 26.9150,
+    "lng": 75.8120,
+    "area": "Central",
+    "indoor": true,
+    "walkingIntensity": 1,
+    "durationMin": 75,
+    "costPerPerson": { "value": 700, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["12:00", "23:00"]],
+        "tue": [["12:00", "23:00"]],
+        "wed": [["12:00", "23:00"]],
+        "thu": [["12:00", "23:00"]],
+        "fri": [["12:00", "23:00"]],
+        "sat": [["12:00", "23:00"]],
+        "sun": [["12:00", "23:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.5,
+    "popularity": 0.87,
+    "mealType": "dinner",
+    "status": "available"
+  },
+  {
+    "id": "jpr_raj_mandir",
+    "name": "Raj Mandir Cinema (Art Deco Movie Palace)",
+    "category": "entertainment",
+    "tags": ["entertainment", "architecture", "culture"],
+    "description": "Meringue-shaped Art Deco theater famous as Asia's finest movie palace, offering Bollywood movie screenings.",
+    "lat": 26.9168,
+    "lng": 75.8106,
+    "area": "Central",
+    "indoor": true,
+    "walkingIntensity": 1,
+    "durationMin": 180,
+    "costPerPerson": { "value": 250, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["12:00", "22:00"]],
+        "tue": [["12:00", "22:00"]],
+        "wed": [["12:00", "22:00"]],
+        "thu": [["12:00", "22:00"]],
+        "fri": [["12:00", "22:00"]],
+        "sat": [["12:00", "22:00"]],
+        "sun": [["12:00", "22:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.6,
+    "popularity": 0.90,
+    "status": "available"
+  },
+  {
+    "id": "jpr_central_park",
+    "name": "Central Park & National Flagpole",
+    "category": "nature",
+    "tags": ["nature", "photography"],
+    "description": "Lush green urban sanctuary in central Jaipur with walking tracks, musical fountains, and giant Indian flag.",
+    "lat": 26.9050,
+    "lng": 75.8110,
+    "area": "Central",
+    "indoor": false,
+    "walkingIntensity": 2,
+    "durationMin": 60,
+    "costPerPerson": { "value": 0, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["05:00", "21:00"]],
+        "tue": [["05:00", "21:00"]],
+        "wed": [["05:00", "21:00"]],
+        "thu": [["05:00", "21:00"]],
+        "fri": [["05:00", "21:00"]],
+        "sat": [["05:00", "21:00"]],
+        "sun": [["05:00", "21:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.4,
+    "popularity": 0.81,
+    "status": "available"
+  },
+  {
+    "id": "jpr_isarlat_tower",
+    "name": "Isarlat Sargasooli Tower",
+    "category": "attraction",
+    "tags": ["history", "architecture", "photography"],
+    "description": "1749 victory tower in Tripolia Bazaar offering panoramic views over the old pink city markets.",
+    "lat": 26.9248,
+    "lng": 75.8218,
+    "area": "Old City",
+    "indoor": false,
+    "walkingIntensity": 2,
+    "durationMin": 45,
+    "costPerPerson": { "value": 70, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["09:30", "16:30"]],
+        "tue": [["09:30", "16:30"]],
+        "wed": [["09:30", "16:30"]],
+        "thu": [["09:30", "16:30"]],
+        "fri": [["09:30", "16:30"]],
+        "sat": [["09:30", "16:30"]],
+        "sun": [["09:30", "16:30"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.3,
+    "popularity": 0.74,
+    "status": "available"
+  },
+  {
+    "id": "jpr_amrapali_museum",
+    "name": "Amrapali Museum of Indian Jewellery",
+    "category": "museum",
+    "tags": ["museum", "history", "culture"],
+    "description": "Exquisite private collection showcasing silver, gold, tribal body ornaments and royal adornments across India.",
+    "lat": 26.9152,
+    "lng": 75.8042,
+    "area": "Central",
+    "indoor": true,
+    "walkingIntensity": 1,
+    "durationMin": 75,
+    "costPerPerson": { "value": 600, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["11:00", "18:00"]],
+        "tue": [["11:00", "18:00"]],
+        "wed": [["11:00", "18:00"]],
+        "thu": [["11:00", "18:00"]],
+        "fri": [["11:00", "18:00"]],
+        "sat": [["11:00", "18:00"]],
+        "sun": [["11:00", "18:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.7,
+    "popularity": 0.82,
+    "status": "available"
+  },
+  {
+    "id": "jpr_tapri_central",
+    "name": "Tapri Central Tea House",
+    "category": "food",
+    "tags": ["food", "snack"],
+    "description": "Trendy rooftop café opposite Central Park, famous for Kulhad Chai, Bun Maska, and street food twists.",
+    "lat": 26.9080,
+    "lng": 75.8115,
+    "area": "Central",
+    "indoor": true,
+    "walkingIntensity": 1,
+    "durationMin": 45,
+    "costPerPerson": { "value": 250, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["07:30", "22:15"]],
+        "tue": [["07:30", "22:15"]],
+        "wed": [["07:30", "22:15"]],
+        "thu": [["07:30", "22:15"]],
+        "fri": [["07:30", "22:15"]],
+        "sat": [["07:30", "22:15"]],
+        "sun": [["07:30", "22:15"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.6,
+    "popularity": 0.93,
+    "mealType": "breakfast",
+    "status": "available"
+  }
+]

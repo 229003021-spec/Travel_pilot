@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Search, Calendar, DollarSign, MapPin, Sparkles, ArrowRight, CheckCircle2, Building, Utensils, Award } from "lucide-react";
 import { useTripStore } from "../store/useTripStore";
 import { ProvenanceBadge } from "../components/common/ProvenanceBadge";
+import { searchDestinationsApi, fetchDestinationOverviewApi } from "../services/api";
 
 interface DestinationItem {
   dest_id?: string;
@@ -52,17 +53,17 @@ export const ExplorePage: React.FC = () => {
       return;
     }
 
-    const timer = setTimeout(() => {
-      fetch(`/api/destinations/search?q=${encodeURIComponent(query)}`)
-        .then((res) => res.json())
-        .then((data) => {
-          if (Array.isArray(data)) {
-            setSearchResults(data);
-            setShowDropdown(true);
-          }
-        })
-        .catch((err) => console.error(err));
-    }, 200);
+    const timer = setTimeout(async () => {
+      try {
+        const data = await searchDestinationsApi(query);
+        if (Array.isArray(data)) {
+          setSearchResults(data);
+          setShowDropdown(true);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }, 150);
 
     return () => clearTimeout(timer);
   }, [query]);
@@ -70,10 +71,7 @@ export const ExplorePage: React.FC = () => {
   // Fetch destination overview when selected
   useEffect(() => {
     if (selectedDest) {
-      fetch(`/api/destinations/overview/${encodeURIComponent(selectedDest)}`)
-        .then((res) => (res.ok ? res.json() : null))
-        .then((data) => setOverview(data))
-        .catch(() => setOverview(null));
+      fetchDestinationOverviewApi(selectedDest).then((data) => setOverview(data));
     } else {
       setOverview(null);
     }
@@ -115,7 +113,7 @@ export const ExplorePage: React.FC = () => {
             TRAVEL PILOT
           </h1>
           <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto mb-8 font-sans">
-            Autonomous trip planning powered by structured Indian tourism datasets. Search any destination to get an instant 17-step optimized itinerary.
+            Autonomous trip planning powered by structured Indian tourism datasets. Search any city, state, or destination for an instant 17-step optimized itinerary.
           </p>
 
           {/* Search Bar Container */}
@@ -127,7 +125,7 @@ export const ExplorePage: React.FC = () => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onFocus={() => query.trim() && setShowDropdown(true)}
-                placeholder="Search destination (e.g. Taj Mahal, Jaipur, Goa, Varanasi...)"
+                placeholder="Search destination (e.g. Bangalore, Jaipur, Goa, Tamil Nadu...)"
                 className="w-full bg-transparent px-4 py-4 text-white text-lg placeholder-slate-400 focus:outline-none"
               />
               {query && (
@@ -143,11 +141,11 @@ export const ExplorePage: React.FC = () => {
               )}
             </div>
 
-            {/* Vertical Alphabetical Auto-complete Suggestions Dropdown */}
+            {/* Vertical Alphabetical Suggestions Dropdown */}
             {showDropdown && searchResults.length > 0 && (
               <div className="absolute left-0 right-0 top-full mt-2 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl overflow-hidden max-h-80 overflow-y-auto text-left z-30 divide-y divide-slate-800">
                 <div className="px-4 py-2 bg-slate-950 text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
-                  <span>Alphabetical Matching Destinations</span>
+                  <span>Matching Destinations ({searchResults.length})</span>
                   <ProvenanceBadge type="verified" label="VERIFIED DATASET" />
                 </div>
                 {searchResults.map((item, index) => (
@@ -180,7 +178,7 @@ export const ExplorePage: React.FC = () => {
 
       {/* Main Content Area */}
       <div className="max-w-7xl mx-auto px-4 pt-10">
-        {/* Selected Destination Card & Planning Modal Trigger */}
+        {/* Selected Destination Card */}
         {selectedDest && (
           <div className="mb-12 bg-slate-900/90 border border-blue-500/40 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-blue-950/50 backdrop-blur">
             <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
@@ -227,7 +225,7 @@ export const ExplorePage: React.FC = () => {
               </div>
             )}
 
-            {/* Trip Configuration Inputs */}
+            {/* Trip Configuration Form */}
             <form onSubmit={handleStartPlanning} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
                 <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2 flex items-center gap-1.5">
@@ -287,7 +285,7 @@ export const ExplorePage: React.FC = () => {
           </div>
         )}
 
-        {/* Famous Places in India Grid */}
+        {/* Famous Places Grid */}
         <div className="mb-8 flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-black text-white font-mono flex items-center gap-2">

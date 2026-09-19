@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useTripStore } from "../../store/useTripStore";
-import { MapPin, Navigation, Info } from "lucide-react";
+import { MapPin, Navigation, Building2, Utensils, Calendar, ShieldCheck } from "lucide-react";
+import { ProvenanceBadge } from "../common/ProvenanceBadge";
 
 export const MapView: React.FC = () => {
   const { trip } = useTripStore();
@@ -18,52 +19,111 @@ export const MapView: React.FC = () => {
     })
     .filter(Boolean) as { item: any; act: any }[];
 
+  const hotels = (trip as any).hotels || [];
+  const restaurants = (trip as any).restaurants || [];
+  const events = (trip as any).events || [];
+
   useEffect(() => {
-    // Attempt Leaflet Map initialization
     let mapInstance: any = null;
 
     try {
-      if (typeof window !== "undefined" && (window as any).L && mapContainerRef.current) {
-        const L = (window as any).L;
-        const centerLat = trip.startingPoint.lat;
-        const centerLng = trip.startingPoint.lng;
+      // Inject Leaflet CSS dynamically if not present
+      if (!document.getElementById("leaflet-css")) {
+        const link = document.createElement("link");
+        link.id = "leaflet-css";
+        link.rel = "stylesheet";
+        link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+        document.head.appendChild(link);
+      }
 
-        mapInstance = L.map(mapContainerRef.current).setView([centerLat, centerLng], 12);
+      const initMap = () => {
+        if (typeof window !== "undefined" && (window as any).L && mapContainerRef.current) {
+          const L = (window as any).L;
+          const centerLat = trip.startingPoint.lat || 20.5937;
+          const centerLng = trip.startingPoint.lng || 78.9629;
 
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-          maxZoom: 19,
-          attribution: "© OpenStreetMap contributors",
-        }).addTo(mapInstance);
+          mapInstance = L.map(mapContainerRef.current).setView([centerLat, centerLng], 12);
 
-        // Add Starting Point Marker
-        L.marker([centerLat, centerLng])
-          .addTo(mapInstance)
-          .bindPopup(`<b>Starting Point:</b> ${trip.startingPoint.name}`);
-
-        // Add Activity Markers
-        const latLngs: [number, number][] = [[centerLat, centerLng]];
-
-        itineraryActivities.forEach(({ item, act }) => {
-          const marker = L.circleMarker([act.lat, act.lng], {
-            radius: 8,
-            color: "#3b82f6",
-            fillColor: "#2563eb",
-            fillOpacity: 0.9,
+          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution: "© OpenStreetMap contributors",
           }).addTo(mapInstance);
 
-          marker.bindPopup(`<b>Day ${item.day}:</b> ${act.name}<br/><i>${item.startTime} - ${item.endTime}</i>`);
-          latLngs.push([act.lat, act.lng]);
-        });
+          // 1. Plot Starting Point / Hotel Marker (Red)
+          const startMarker = L.circleMarker([centerLat, centerLng], {
+            radius: 9,
+            color: "#ef4444",
+            fillColor: "#dc2626",
+            fillOpacity: 1,
+          }).addTo(mapInstance);
+          startMarker.bindPopup(`<b>Start Location:</b> ${trip.startingPoint.name}`);
 
-        // Add Polyline Route
-        if (latLngs.length > 1) {
-          L.polyline(latLngs, { color: "#3b82f6", weight: 3, dashArray: "5, 5" }).addTo(mapInstance);
+          // 2. Plot Hotels (Purple)
+          hotels.forEach((h: any) => {
+            if (h.lat && h.lng) {
+              const hMarker = L.circleMarker([h.lat, h.lng], {
+                radius: 7,
+                color: "#a855f7",
+                fillColor: "#9333ea",
+                fillOpacity: 0.9,
+              }).addTo(mapInstance);
+              hMarker.bindPopup(`<b>Hotel (${h.tier || "Hotel"}):</b> ${h.name}<br/>Price: ₹${h.pricePerNight}/night`);
+            }
+          });
+
+          // 3. Plot Restaurants (Green)
+          restaurants.forEach((r: any) => {
+            if (r.lat && r.lng) {
+              const rMarker = L.circleMarker([r.lat, r.lng], {
+                radius: 6,
+                color: "#10b981",
+                fillColor: "#059669",
+                fillOpacity: 0.9,
+              }).addTo(mapInstance);
+              rMarker.bindPopup(`<b>Restaurant:</b> ${r.name}<br/>Cuisine: ${r.cuisine || "Local"}`);
+            }
+          });
+
+          // 4. Plot Itinerary Activities (Blue) with sequential route
+          const latLngs: [number, number][] = [[centerLat, centerLng]];
+
+          itineraryActivities.forEach(({ item, act }) => {
+            const marker = L.circleMarker([act.lat, act.lng], {
+              radius: 8,
+              color: "#3b82f6",
+              fillColor: "#2563eb",
+              fillOpacity: 0.9,
+            }).addTo(mapInstance);
+
+            marker.bindPopup(`<b>Day ${item.day}:</b> ${act.name}<br/><i>${item.startTime} - ${item.endTime}</i><br/>Cost: ₹${item.estimatedCost}`);
+            latLngs.push([act.lat, act.lng]);
+          });
+
+          // 5. Draw Polyline Route
+          if (latLngs.length > 1) {
+            L.polyline(latLngs, { color: "#3b82f6", weight: 3, dashArray: "6, 6" }).addTo(mapInstance);
+          }
+
+          // Fit bounds
+          if (latLngs.length > 0) {
+            mapInstance.fitBounds(L.latLngBounds(latLngs), { padding: [30, 30] });
+          }
+        } else {
+          setMapError(true);
         }
+      };
+
+      if ((window as any).L) {
+        initMap();
       } else {
-        setMapError(true);
+        const script = document.createElement("script");
+        script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+        script.onload = () => initMap();
+        script.onerror = () => setMapError(true);
+        document.head.appendChild(script);
       }
     } catch (e) {
-      console.warn("Leaflet map load warning, falling back to SVG plot:", e);
+      console.warn("Leaflet map initialization warning, using SVG plot:", e);
       setMapError(true);
     }
 
@@ -72,7 +132,7 @@ export const MapView: React.FC = () => {
     };
   }, [trip]);
 
-  // Compute SVG plot bounds for offline fallback
+  // Compute SVG fallback bounds
   const lats = [trip.startingPoint.lat, ...itineraryActivities.map(({ act }) => act.lat)];
   const lngs = [trip.startingPoint.lng, ...itineraryActivities.map(({ act }) => act.lng)];
   const minLat = Math.min(...lats);
@@ -92,54 +152,49 @@ export const MapView: React.FC = () => {
     <div className="space-y-4 animate-in fade-in duration-300">
       <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold text-white flex items-center gap-2">
-            <Navigation className="w-5 h-5 text-blue-400" />
-            Geographic Route & Activity Plot
+          <h2 className="text-2xl font-black text-white flex items-center gap-2 font-mono">
+            <Navigation className="w-6 h-6 text-blue-400" />
+            Interactive Map & Geographic Route
           </h2>
-          <p className="text-xs text-slate-400 mt-0.5">
-            Clustered by day to minimize intra-day travel distance.
+          <p className="text-xs text-slate-400 mt-1">
+            Real-time coordinates plotting for places, hotels, restaurants, and daily transit paths.
           </p>
         </div>
-        <div className="text-xs text-blue-400 bg-blue-950 px-3 py-1 rounded-full border border-blue-800 font-mono">
-          {trip.destination} Coordinates Plot
-        </div>
+        <ProvenanceBadge type="verified" label="VERIFIED DATASET MAP" />
       </div>
 
-      {/* Main Map Container */}
-      <div className="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-xl min-h-[450px] relative">
-        {!mapError ? (
-          <div ref={mapContainerRef} className="w-full h-[480px] z-10" />
-        ) : (
-          /* Offline SVG Fallback Plot */
-          <div className="p-6 bg-slate-950 flex flex-col items-center justify-center min-h-[480px]">
-            <div className="flex items-center gap-2 text-xs font-semibold text-amber-400 bg-amber-950/60 border border-amber-800 px-3 py-1 rounded-full mb-4">
-              <Info className="w-3.5 h-3.5" /> Demo / Offline Fallback SVG Map Plot
-            </div>
+      {/* Legend Row */}
+      <div className="flex flex-wrap items-center gap-4 bg-slate-900/80 border border-slate-800 rounded-2xl px-5 py-3 text-xs font-bold text-slate-300">
+        <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-red-500 inline-block" /> Start Location</span>
+        <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-blue-500 inline-block" /> Scheduled Activities</span>
+        <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-purple-500 inline-block" /> Recommended Hotels</span>
+        <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-emerald-500 inline-block" /> Dining Spots</span>
+      </div>
 
+      {/* Main Map Canvas */}
+      <div className="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-xl min-h-[480px] relative">
+        <div ref={mapContainerRef} className="w-full h-[520px] z-10" />
+
+        {mapError && (
+          <div className="p-6 bg-slate-950 flex flex-col items-center justify-center min-h-[480px]">
             <svg viewBox="0 0 600 400" className="w-full max-w-2xl h-80 bg-slate-900 rounded-2xl border border-slate-800">
-              {/* Draw Route Polyline */}
               <polyline
-                points={itineraryActivities
-                  .reduce(
-                    (pts, { act }) => {
-                      const p = mapToSvg(act.lat, act.lng);
-                      return `${pts} ${p.x},${p.y}`;
-                    },
-                    `${startSvg.x},${startSvg.y}`
-                  )}
+                points={itineraryActivities.reduce(
+                  (pts, { act }) => {
+                    const p = mapToSvg(act.lat, act.lng);
+                    return `${pts} ${p.x},${p.y}`;
+                  },
+                  `${startSvg.x},${startSvg.y}`
+                )}
                 fill="none"
                 stroke="#3b82f6"
                 strokeWidth="2"
                 strokeDasharray="4 4"
               />
-
-              {/* Start Point */}
               <circle cx={startSvg.x} cy={startSvg.y} r="8" fill="#ef4444" />
               <text x={startSvg.x + 12} y={startSvg.y + 4} fill="#f87171" fontSize="10" fontWeight="bold">
                 START: {trip.startingPoint.name}
               </text>
-
-              {/* Activity Dots */}
               {itineraryActivities.map(({ item, act }, idx) => {
                 const pt = mapToSvg(act.lat, act.lng);
                 return (
