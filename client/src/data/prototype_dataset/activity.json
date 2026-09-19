@@ -1,0 +1,162 @@
+[
+  {
+    "activity_id": "A0001",
+    "dest_id": "D001",
+    "city": "Agra",
+    "name": "Taj Mahal sunrise",
+    "interests (auto-tagged – review)": "Sightseeing",
+    "source": "Input file: Activities"
+  },
+  {
+    "activity_id": "A0002",
+    "dest_id": "D001",
+    "city": "Agra",
+    "name": "Heritage walk",
+    "interests (auto-tagged – review)": "Heritage",
+    "source": "Input file: Activities"
+  },
+  {
+    "activity_id": "A0003",
+    "dest_id": "D002",
+    "city": "Jaipur",
+    "name": "Fort tour",
+    "interests (auto-tagged – review)": "Heritage",
+    "source": "Input file: Activities"
+  },
+  {
+    "activity_id": "A0004",
+    "dest_id": "D002",
+    "city": "Jaipur",
+    "name": "Food walk",
+    "interests (auto-tagged – review)": "Food",
+    "source": "Input file: Activities"
+  },
+  {
+    "activity_id": "A0005",
+    "dest_id": "D003",
+    "city": "Varanasi",
+    "name": "Ganga Aarti",
+    "interests (auto-tagged – review)": "Spiritual",
+    "source": "Input file: Activities"
+  },
+  {
+    "activity_id": "A0006",
+    "dest_id": "D003",
+    "city": "Varanasi",
+    "name": "Boat ride",
+    "interests (auto-tagged – review)": "Nature",
+    "source": "Input file: Activities"
+  },
+  {
+    "activity_id": "A0007",
+    "dest_id": "D004",
+    "city": "Mysuru",
+    "name": "Palace tour",
+    "interests (auto-tagged – review)": "Heritage",
+    "source": "Input file: Activities"
+  },
+  {
+    "activity_id": "A0008",
+    "dest_id": "D004",
+    "city": "Mysuru",
+    "name": "Heritage walk",
+    "interests (auto-tagged – review)": "Heritage",
+    "source": "Input file: Activities"
+  },
+  {
+    "activity_id": "A0009",
+    "dest_id": "D005",
+    "city": "Kochi",
+    "name": "Heritage walk",
+    "interests (auto-tagged – review)": "Heritage",
+    "source": "Input file: Activities"
+  },
+  {
+    "activity_id": "A0010",
+    "dest_id": "D005",
+    "city": "Kochi",
+    "name": "Boat ride",
+    "interests (auto-tagged – review)": "Nature",
+    "source": "Input file: Activities"
+  },
+  {
+    "activity_id": "A0011",
+    "dest_id": "D006",
+    "city": "Hampi",
+    "name": "Cycling",
+    "interests (auto-tagged – review)": "Adventure",
+    "source": "Input file: Activities"
+  },
+  {
+    "activity_id": "A0012",
+    "dest_id": "D006",
+    "city": "Hampi",
+    "name": "Ruins exploration",
+    "interests (auto-tagged – review)": "Heritage",
+    "source": "Input file: Activities"
+  },
+  {
+    "activity_id": "A0013",
+    "dest_id": "D007",
+    "city": "Munnar",
+    "name": "Trekking",
+    "interests (auto-tagged – review)": "Adventure",
+    "source": "Input file: Activities"
+  },
+  {
+    "activity_id": "A0014",
+    "dest_id": "D007",
+    "city": "Munnar",
+    "name": "Tea tours",
+    "interests (auto-tagged – review)": "Nature",
+    "source": "Input file: Activities"
+  },
+  {
+    "activity_id": "A0015",
+    "dest_id": "D008",
+    "city": "Rameswaram",
+    "name": "Temple visit",
+    "interests (auto-tagged – review)": "Spiritual",
+    "source": "Input file: Activities"
+  },
+  {
+    "activity_id": "A0016",
+    "dest_id": "D008",
+    "city": "Rameswaram",
+    "name": "Dhanushkodi trip",
+    "interests (auto-tagged – review)": "Sightseeing",
+    "source": "Input file: Activities"
+  },
+  {
+    "activity_id": "A0017",
+    "dest_id": "D009",
+    "city": "Goa",
+    "name": "Water sports",
+    "interests (auto-tagged – review)": "Adventure",
+    "source": "Input file: Activities"
+  },
+  {
+    "activity_id": "A0018",
+    "dest_id": "D009",
+    "city": "Goa",
+    "name": "Beach hopping",
+    "interests (auto-tagged – review)": "Nature",
+    "source": "Input file: Activities"
+  },
+  {
+    "activity_id": "A0019",
+    "dest_id": "D010",
+    "city": "Leh",
+    "name": "Trekking",
+    "interests (auto-tagged – review)": "Adventure",
+    "source": "Input file: Activities"
+  },
+  {
+    "activity_id": "A0020",
+    "dest_id": "D010",
+    "city": "Leh",
+    "name": "Road trips",
+    "interests (auto-tagged – review)": "Adventure",
+    "source": "Input file: Activities"
+  }
+]

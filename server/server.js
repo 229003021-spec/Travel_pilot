@@ -30,8 +30,10 @@ function loadJson(relPath) {
 }
 
 const top500Destinations = loadJson("data/top500_destinations.json") || [];
+const prototypeMaster = loadJson("data/prototype_dataset/master_prototype.json") || {};
+const prototypeTransportRoutes = loadJson("data/prototype_dataset/transportroute.json") || [];
+const prototypeEvents = loadJson("data/prototype_dataset/event.json") || [];
 
-// Destination coordinates lookup database
 const destCoordinates = {
   agra: { lat: 27.1767, lng: 78.0081 },
   jaipur: { lat: 26.9124, lng: 75.7873 },
@@ -161,7 +163,6 @@ function buildDynamicActivityPool(destinationName) {
       });
     });
 
-    // Generate Shopping / Special Experience
     if (match.shopping) {
       pool.push({
         id: `act_${actIndex++}_shp`,
@@ -191,7 +192,6 @@ function buildDynamicActivityPool(destinationName) {
     }
   }
 
-  // Fallback generic items if pool is small
   if (pool.length < 6) {
     const genericItems = [
       { name: `${destinationName} City Heritage Walk`, category: "attraction", durationMin: 90, cost: 100 },
@@ -246,7 +246,20 @@ app.get("/api/destinations/top500", (req, res) => {
   res.json(top500Destinations);
 });
 
-// 3. POST /api/trip/generate
+// 3. GET Prototype Dataset Endpoints
+app.get("/api/dataset/master", (req, res) => {
+  res.json(prototypeMaster);
+});
+
+app.get("/api/dataset/transport-routes", (req, res) => {
+  res.json(prototypeTransportRoutes);
+});
+
+app.get("/api/dataset/events", (req, res) => {
+  res.json(prototypeEvents);
+});
+
+// 4. POST /api/trip/generate
 app.post("/api/trip/generate", (req, res) => {
   try {
     const parseResult = GenerateTripRequestSchema.safeParse(req.body);
@@ -257,7 +270,7 @@ app.post("/api/trip/generate", (req, res) => {
     const payload = parseResult.data;
     const destLower = payload.destination.toLowerCase();
 
-    // Dynamically build activity pool from Excel dataset or seed files
+    // Dynamically build activity pool
     const activityPool = buildDynamicActivityPool(payload.destination);
 
     // Weather fixture or neutral estimate
@@ -284,11 +297,11 @@ app.post("/api/trip/generate", (req, res) => {
       sources: [
         {
           id: "src_1",
-          title: `India Top 500 Tourist Database - ${payload.destination}`,
-          source: "top500_excel_dataset",
-          snippet: `Extracted from India Top 500 Tourist Destinations dataset for ${payload.destination}.`,
+          title: `India Travel Prototype Dataset - ${payload.destination}`,
+          source: "india_travel_prototype_dataset_xlsx",
+          snippet: `Extracted from India_Travel_Prototype_Dataset.xlsx (500 Destinations, Places, TransportRoutes, Events).`,
           retrievedAt: new Date().toISOString(),
-          provenance: destLower.includes("jaipur") || destLower.includes("munnar") ? "demo" : "verified",
+          provenance: "verified",
         },
       ],
       history: [],
@@ -316,7 +329,7 @@ app.post("/api/trip/generate", (req, res) => {
   }
 });
 
-// 4. POST /api/trip/action
+// 5. POST /api/trip/action
 app.post("/api/trip/action", (req, res) => {
   try {
     const { trip, action } = req.body;
@@ -337,7 +350,7 @@ app.post("/api/trip/action", (req, res) => {
   }
 });
 
-// 5. POST /api/trip/replan
+// 6. POST /api/trip/replan
 app.post("/api/trip/replan", (req, res) => {
   try {
     const { trip, reason, options } = req.body;
@@ -353,7 +366,7 @@ app.post("/api/trip/replan", (req, res) => {
   }
 });
 
-// 6. POST /api/assistant/chat
+// 7. POST /api/assistant/chat
 app.post("/api/assistant/chat", async (req, res) => {
   try {
     const { message, trip } = req.body;

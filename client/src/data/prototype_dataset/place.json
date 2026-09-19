@@ -1,0 +1,450 @@
+[
+  {
+    "place_id": "P0001",
+    "dest_id": "D001",
+    "city": "Agra",
+    "name": "Mankameshwar Temple",
+    "category": "Religious",
+    "source": "Input file: Temples / Religious"
+  },
+  {
+    "place_id": "P0002",
+    "dest_id": "D001",
+    "city": "Agra",
+    "name": "Agra Fort",
+    "category": "Heritage",
+    "source": "Input file: Monuments / Heritage"
+  },
+  {
+    "place_id": "P0003",
+    "dest_id": "D001",
+    "city": "Agra",
+    "name": "Itmad-ud-Daulah",
+    "category": "Heritage",
+    "source": "Input file: Monuments / Heritage"
+  },
+  {
+    "place_id": "P0004",
+    "dest_id": "D001",
+    "city": "Agra",
+    "name": "Yamuna riverfront",
+    "category": "Nature",
+    "source": "Input file: Nature"
+  },
+  {
+    "place_id": "P0005",
+    "dest_id": "D001",
+    "city": "Agra",
+    "name": "Taj Mahal",
+    "category": "Attraction",
+    "source": "Input file: Famous Attractions"
+  },
+  {
+    "place_id": "P0006",
+    "dest_id": "D001",
+    "city": "Agra",
+    "name": "Mehtab Bagh",
+    "category": "Attraction",
+    "source": "Input file: Famous Attractions"
+  },
+  {
+    "place_id": "P0007",
+    "dest_id": "D002",
+    "city": "Jaipur",
+    "name": "Govind Dev Ji",
+    "category": "Religious",
+    "source": "Input file: Temples / Religious"
+  },
+  {
+    "place_id": "P0008",
+    "dest_id": "D002",
+    "city": "Jaipur",
+    "name": "Birla Mandir",
+    "category": "Religious",
+    "source": "Input file: Temples / Religious"
+  },
+  {
+    "place_id": "P0009",
+    "dest_id": "D002",
+    "city": "Jaipur",
+    "name": "Jantar Mantar",
+    "category": "Heritage",
+    "source": "Input file: Monuments / Heritage"
+  },
+  {
+    "place_id": "P0010",
+    "dest_id": "D002",
+    "city": "Jaipur",
+    "name": "City Palace",
+    "category": "Heritage",
+    "source": "Input file: Monuments / Heritage"
+  },
+  {
+    "place_id": "P0011",
+    "dest_id": "D002",
+    "city": "Jaipur",
+    "name": "Amber Fort",
+    "category": "Attraction",
+    "source": "Input file: Famous Attractions"
+  },
+  {
+    "place_id": "P0012",
+    "dest_id": "D002",
+    "city": "Jaipur",
+    "name": "Hawa Mahal",
+    "category": "Attraction",
+    "source": "Input file: Famous Attractions"
+  },
+  {
+    "place_id": "P0013",
+    "dest_id": "D003",
+    "city": "Varanasi",
+    "name": "Kashi Vishwanath",
+    "category": "Religious",
+    "source": "Input file: Temples / Religious"
+  },
+  {
+    "place_id": "P0014",
+    "dest_id": "D003",
+    "city": "Varanasi",
+    "name": "Sankat Mochan",
+    "category": "Religious",
+    "source": "Input file: Temples / Religious"
+  },
+  {
+    "place_id": "P0015",
+    "dest_id": "D003",
+    "city": "Varanasi",
+    "name": "Ramnagar Fort",
+    "category": "Heritage",
+    "source": "Input file: Monuments / Heritage"
+  },
+  {
+    "place_id": "P0016",
+    "dest_id": "D003",
+    "city": "Varanasi",
+    "name": "Ganges River",
+    "category": "Nature",
+    "source": "Input file: Nature"
+  },
+  {
+    "place_id": "P0017",
+    "dest_id": "D003",
+    "city": "Varanasi",
+    "name": "Ghats",
+    "category": "Attraction",
+    "source": "Input file: Famous Attractions"
+  },
+  {
+    "place_id": "P0018",
+    "dest_id": "D003",
+    "city": "Varanasi",
+    "name": "Sarnath",
+    "category": "Attraction",
+    "source": "Input file: Famous Attractions"
+  },
+  {
+    "place_id": "P0019",
+    "dest_id": "D004",
+    "city": "Mysuru",
+    "name": "Chamundeshwari Temple",
+    "category": "Religious",
+    "source": "Input file: Temples / Religious"
+  },
+  {
+    "place_id": "P0020",
+    "dest_id": "D004",
+    "city": "Mysuru",
+    "name": "Mysuru Palace",
+    "category": "Heritage",
+    "source": "Input file: Monuments / Heritage"
+  },
+  {
+    "place_id": "P0021",
+    "dest_id": "D004",
+    "city": "Mysuru",
+    "name": "Jaganmohan Palace",
+    "category": "Heritage",
+    "source": "Input file: Monuments / Heritage"
+  },
+  {
+    "place_id": "P0022",
+    "dest_id": "D004",
+    "city": "Mysuru",
+    "name": "Kukkarahalli Lake",
+    "category": "Nature",
+    "source": "Input file: Nature"
+  },
+  {
+    "place_id": "P0023",
+    "dest_id": "D004",
+    "city": "Mysuru",
+    "name": "Brindavan Gardens",
+    "category": "Attraction",
+    "source": "Input file: Famous Attractions"
+  },
+  {
+    "place_id": "P0024",
+    "dest_id": "D005",
+    "city": "Kochi",
+    "name": "Chottanikkara Temple",
+    "category": "Religious",
+    "source": "Input file: Temples / Religious"
+  },
+  {
+    "place_id": "P0025",
+    "dest_id": "D005",
+    "city": "Kochi",
+    "name": "Mattancherry Palace",
+    "category": "Heritage",
+    "source": "Input file: Monuments / Heritage"
+  },
+  {
+    "place_id": "P0026",
+    "dest_id": "D005",
+    "city": "Kochi",
+    "name": "St. Francis Church",
+    "category": "Heritage",
+    "source": "Input file: Monuments / Heritage"
+  },
+  {
+    "place_id": "P0027",
+    "dest_id": "D005",
+    "city": "Kochi",
+    "name": "Backwaters",
+    "category": "Nature",
+    "source": "Input file: Nature"
+  },
+  {
+    "place_id": "P0028",
+    "dest_id": "D005",
+    "city": "Kochi",
+    "name": "Fort Kochi",
+    "category": "Attraction",
+    "source": "Input file: Famous Attractions"
+  },
+  {
+    "place_id": "P0029",
+    "dest_id": "D005",
+    "city": "Kochi",
+    "name": "Marine Drive",
+    "category": "Attraction",
+    "source": "Input file: Famous Attractions"
+  },
+  {
+    "place_id": "P0030",
+    "dest_id": "D006",
+    "city": "Hampi",
+    "name": "Virupaksha Temple",
+    "category": "Religious",
+    "source": "Input file: Temples / Religious"
+  },
+  {
+    "place_id": "P0031",
+    "dest_id": "D006",
+    "city": "Hampi",
+    "name": "Stone Chariot",
+    "category": "Heritage",
+    "source": "Input file: Monuments / Heritage"
+  },
+  {
+    "place_id": "P0032",
+    "dest_id": "D006",
+    "city": "Hampi",
+    "name": "Royal Enclosure",
+    "category": "Heritage",
+    "source": "Input file: Monuments / Heritage"
+  },
+  {
+    "place_id": "P0033",
+    "dest_id": "D006",
+    "city": "Hampi",
+    "name": "Tungabhadra River",
+    "category": "Nature",
+    "source": "Input file: Nature"
+  },
+  {
+    "place_id": "P0034",
+    "dest_id": "D006",
+    "city": "Hampi",
+    "name": "Vittala Temple",
+    "category": "Attraction",
+    "source": "Input file: Famous Attractions"
+  },
+  {
+    "place_id": "P0035",
+    "dest_id": "D007",
+    "city": "Munnar",
+    "name": "Tea Museum",
+    "category": "Heritage",
+    "source": "Input file: Monuments / Heritage"
+  },
+  {
+    "place_id": "P0036",
+    "dest_id": "D007",
+    "city": "Munnar",
+    "name": "Western Ghats",
+    "category": "Nature",
+    "source": "Input file: Nature"
+  },
+  {
+    "place_id": "P0037",
+    "dest_id": "D007",
+    "city": "Munnar",
+    "name": "Tea gardens",
+    "category": "Attraction",
+    "source": "Input file: Famous Attractions"
+  },
+  {
+    "place_id": "P0038",
+    "dest_id": "D007",
+    "city": "Munnar",
+    "name": "Top Station",
+    "category": "Attraction",
+    "source": "Input file: Famous Attractions"
+  },
+  {
+    "place_id": "P0039",
+    "dest_id": "D008",
+    "city": "Rameswaram",
+    "name": "Ramanathaswamy Temple",
+    "category": "Religious",
+    "source": "Input file: Temples / Religious"
+  },
+  {
+    "place_id": "P0040",
+    "dest_id": "D008",
+    "city": "Rameswaram",
+    "name": "Gulf of Mannar",
+    "category": "Nature",
+    "source": "Input file: Nature"
+  },
+  {
+    "place_id": "P0041",
+    "dest_id": "D008",
+    "city": "Rameswaram",
+    "name": "Dhanushkodi",
+    "category": "Attraction",
+    "source": "Input file: Famous Attractions"
+  },
+  {
+    "place_id": "P0042",
+    "dest_id": "D008",
+    "city": "Rameswaram",
+    "name": "Pamban Bridge",
+    "category": "Attraction",
+    "source": "Input file: Famous Attractions"
+  },
+  {
+    "place_id": "P0043",
+    "dest_id": "D009",
+    "city": "Goa",
+    "name": "Basilica of Bom Jesus",
+    "category": "Religious",
+    "source": "Input file: Temples / Religious"
+  },
+  {
+    "place_id": "P0044",
+    "dest_id": "D009",
+    "city": "Goa",
+    "name": "Shantadurga Temple",
+    "category": "Religious",
+    "source": "Input file: Temples / Religious"
+  },
+  {
+    "place_id": "P0045",
+    "dest_id": "D009",
+    "city": "Goa",
+    "name": "Old Goa churches",
+    "category": "Heritage",
+    "source": "Input file: Monuments / Heritage"
+  },
+  {
+    "place_id": "P0046",
+    "dest_id": "D009",
+    "city": "Goa",
+    "name": "Arabian Sea",
+    "category": "Nature",
+    "source": "Input file: Nature"
+  },
+  {
+    "place_id": "P0047",
+    "dest_id": "D009",
+    "city": "Goa",
+    "name": "Baga",
+    "category": "Attraction",
+    "source": "Input file: Famous Attractions"
+  },
+  {
+    "place_id": "P0048",
+    "dest_id": "D009",
+    "city": "Goa",
+    "name": "Calangute",
+    "category": "Attraction",
+    "source": "Input file: Famous Attractions"
+  },
+  {
+    "place_id": "P0049",
+    "dest_id": "D009",
+    "city": "Goa",
+    "name": "Palolem",
+    "category": "Attraction",
+    "source": "Input file: Famous Attractions"
+  },
+  {
+    "place_id": "P0050",
+    "dest_id": "D009",
+    "city": "Goa",
+    "name": "Old Goa",
+    "category": "Attraction",
+    "source": "Input file: Famous Attractions"
+  },
+  {
+    "place_id": "P0051",
+    "dest_id": "D010",
+    "city": "Leh",
+    "name": "Thiksey",
+    "category": "Religious",
+    "source": "Input file: Temples / Religious"
+  },
+  {
+    "place_id": "P0052",
+    "dest_id": "D010",
+    "city": "Leh",
+    "name": "Hemis",
+    "category": "Religious",
+    "source": "Input file: Temples / Religious"
+  },
+  {
+    "place_id": "P0053",
+    "dest_id": "D010",
+    "city": "Leh",
+    "name": "Leh Palace",
+    "category": "Heritage",
+    "source": "Input file: Monuments / Heritage"
+  },
+  {
+    "place_id": "P0054",
+    "dest_id": "D010",
+    "city": "Leh",
+    "name": "Himalayas",
+    "category": "Nature",
+    "source": "Input file: Nature"
+  },
+  {
+    "place_id": "P0055",
+    "dest_id": "D010",
+    "city": "Leh",
+    "name": "Pangong Lake",
+    "category": "Attraction",
+    "source": "Input file: Famous Attractions"
+  },
+  {
+    "place_id": "P0056",
+    "dest_id": "D010",
+    "city": "Leh",
+    "name": "Nubra Valley",
+    "category": "Attraction",
+    "source": "Input file: Famous Attractions"
+  }
+]

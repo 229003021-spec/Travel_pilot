@@ -1,0 +1,79 @@
+[
+  {
+    "hotel_id": "H0001",
+    "dest_id": "D001",
+    "city": "Agra",
+    "name": "The Oberoi Amarvilas",
+    "source": "Input file (name as given; not independently verified)"
+  },
+  {
+    "hotel_id": "H0002",
+    "dest_id": "D001",
+    "city": "Agra",
+    "name": "ITC Mughal",
+    "source": "Input file (name as given; not independently verified)"
+  },
+  {
+    "hotel_id": "H0003",
+    "dest_id": "D002",
+    "city": "Jaipur",
+    "name": "Rambagh Palace",
+    "source": "Input file (name as given; not independently verified)"
+  },
+  {
+    "hotel_id": "H0004",
+    "dest_id": "D002",
+    "city": "Jaipur",
+    "name": "ITC Rajputana",
+    "source": "Input file (name as given; not independently verified)"
+  },
+  {
+    "hotel_id": "H0005",
+    "dest_id": "D003",
+    "city": "Varanasi",
+    "name": "Taj Ganges",
+    "source": "Input file (name as given; not independently verified)"
+  },
+  {
+    "hotel_id": "H0006",
+    "dest_id": "D003",
+    "city": "Varanasi",
+    "name": "BrijRama Palace",
+    "source": "Input file (name as given; not independently verified)"
+  },
+  {
+    "hotel_id": "H0007",
+    "dest_id": "D004",
+    "city": "Mysuru",
+    "name": "Lalitha Mahal Palace",
+    "source": "Input file (name as given; not independently verified)"
+  },
+  {
+    "hotel_id": "H0008",
+    "dest_id": "D004",
+    "city": "Mysuru",
+    "name": "Radisson",
+    "source": "Input file (brand/chain only – confirm exact property)"
+  },
+  {
+    "hotel_id": "H0009",
+    "dest_id": "D005",
+    "city": "Kochi",
+    "name": "Grand Hyatt",
+    "source": "Input file (brand/chain only – confirm exact property)"
+  },
+  {
+    "hotel_id": "H0010",
+    "dest_id": "D005",
+    "city": "Kochi",
+    "name": "Brunton Boatyard",
+    "source": "Input file (name as given; not independently verified)"
+  },
+  {
+    "hotel_id": "H0011",
+    "dest_id": "D008",
+    "city": "Rameswaram",
+    "name": "Daiwik Hotels",
+    "source": "Input file (brand/chain only – confirm exact property)"
+  }
+]

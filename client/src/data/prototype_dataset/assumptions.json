@@ -1,0 +1,23 @@
+[
+  {
+    "assumption": "Earth radius",
+    "value": 6371,
+    "unit": "km",
+    "note": "Mean Earth radius used in the haversine (straight-line) distance formula"
+  },
+  {
+    "assumption": "Road circuity factor",
+    "value": 1.3,
+    "unit": "x",
+    "note": "ASSUMPTION: road distance ≈ straight-line × 1.3. Mountain/coastal routes are usually higher (1.5–2.0)"
+  },
+  {
+    "assumption": "Average road speed",
+    "value": 45,
+    "unit": "km/h",
+    "note": "ASSUMPTION: blended average speed for intercity roads in India; hill routes are slower"
+  },
+  {
+    "assumption": "Blue text on yellow = editable assumption. TransportRoute recalculates when these change."
+  }
+]

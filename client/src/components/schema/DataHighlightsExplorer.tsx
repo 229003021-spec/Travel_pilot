@@ -1,9 +1,19 @@
 import React, { useState } from "react";
 import { ComingSoonModal } from "../common/ComingSoonModal";
+
+import destData from "../../data/prototype_dataset/destination.json";
+import placeData from "../../data/prototype_dataset/place.json";
+import openingHoursData from "../../data/prototype_dataset/openinghours.json";
+import activityData from "../../data/prototype_dataset/activity.json";
+import hotelData from "../../data/prototype_dataset/hotel.json";
+import transportRouteData from "../../data/prototype_dataset/transportroute.json";
+import eventData from "../../data/prototype_dataset/event.json";
+import assumptionsData from "../../data/prototype_dataset/assumptions.json";
+
 import {
   MapPin, Layers, Clock, Hourglass, Navigation, Plane, Hotel, Utensils,
   DollarSign, UserCheck, FileText, BookmarkCheck, Activity, Calendar, Sun,
-  Shield, RefreshCw, GitFork, Sparkles, ChevronRight
+  Shield, RefreshCw, GitFork, Sparkles, ChevronRight, CheckCircle2
 } from "lucide-react";
 
 export const DataHighlightsExplorer: React.FC = () => {
@@ -19,18 +29,9 @@ export const DataHighlightsExplorer: React.FC = () => {
       number: 1,
       title: "Destination / Geographic Data",
       icon: MapPin,
-      status: "Active (500 Destinations)",
-      description: "Collects Country, State, City, District, Lat/Lng, Tourist region, and nearby attraction distances.",
-      schema: {
-        country: "India",
-        state: "Rajasthan",
-        city: "Jaipur",
-        district: "Jaipur District",
-        lat: 26.9124,
-        lng: 75.7873,
-        touristRegion: "Golden Triangle",
-        nearbyDestinations: ["Ajmer", "Pushkar", "Agra"],
-      },
+      status: `Active (${destData.length} Destinations Installed)`,
+      description: "Installed from Destination sheet: City, State, Region, Type, Lat/Lon, Best Season, Ideal Stay.",
+      schema: destData.slice(0, 2),
     },
     {
       number: 2,
@@ -52,42 +53,25 @@ export const DataHighlightsExplorer: React.FC = () => {
       number: 3,
       title: "Opening Hours Data",
       icon: Clock,
-      status: "Active (Verified/Demo)",
-      description: "Opening/closing times, days open, holiday closures, seasonal timings, and recommended arrival windows.",
-      schema: {
-        openingTime: "09:00",
-        closingTime: "17:30",
-        daysOpen: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-        holidayClosures: ["Republic Day", "Diwali"],
-        recommendedVisitDurationMin: 120,
-      },
+      status: `Installed (${openingHoursData.length} Opening Hours Records)`,
+      description: "Installed from OpeningHours sheet: Open/close time, days open, holiday closures, recommended stay.",
+      schema: openingHoursData.length > 0 ? openingHoursData : { openingTime: "09:00", closingTime: "17:30" },
     },
     {
       number: 4,
       title: "Activity Duration Data",
       icon: Hourglass,
-      status: "Active",
-      description: "Normative activity duration in minutes used by optimizer for schedule fitting.",
-      schema: {
-        activityId: "jpr_amber_fort",
-        durationMin: 150,
-        bufferMin: 15,
-      },
+      status: `Installed (${activityData.length} Activity Duration Records)`,
+      description: "Installed from Activity sheet: Normative duration in minutes used by optimizer for schedule fitting.",
+      schema: activityData.slice(0, 3),
     },
     {
       number: 5,
       title: "Geographic Distance + Travel Time",
       icon: Navigation,
-      status: "Active (Haversine x 1.3)",
-      description: "Place A -> Place B route distance, walking time, driving time, transit time, and detour factors.",
-      schema: {
-        placeA: "Jaipur Railway Station",
-        placeB: "Amber Fort",
-        distanceKm: 11.2,
-        drivingTimeMin: 25,
-        walkingTimeMin: 140,
-        transportationMode: "drive",
-      },
+      status: `Installed (${transportRouteData.length} Road Routes Installed)`,
+      description: "Installed from TransportRoute sheet: 824 inter-city routes with straight line km, road km, duration hrs.",
+      schema: transportRouteData.slice(0, 2),
     },
     {
       number: 6,
@@ -105,16 +89,9 @@ export const DataHighlightsExplorer: React.FC = () => {
       number: 7,
       title: "Accommodation Data",
       icon: Hotel,
-      status: "Awaiting Hotel Feed",
-      description: "Hotels, resorts, rooms, price/night, rating, amenities, and proximity to attractions.",
-      schema: {
-        hotelId: "htl_101",
-        name: "Rambagh Palace Jaipur",
-        pricePerNight: 14500,
-        rating: 4.9,
-        amenities: ["Pool", "Spa", "Heritage Dining"],
-        distanceFromAttractionsKm: { "Amber Fort": 12, "City Palace": 4 },
-      },
+      status: `Installed (${hotelData.length} Hotel Records)`,
+      description: "Installed from Hotel sheet: Hotel ID, Name, dest_id, City, Source.",
+      schema: hotelData.slice(0, 3),
     },
     {
       number: 8,
@@ -204,16 +181,9 @@ export const DataHighlightsExplorer: React.FC = () => {
       number: 14,
       title: "Events & Festivals Data",
       icon: Calendar,
-      status: "Awaiting Event Feed",
-      description: "Concerts, cultural festivals, exhibitions, fairs, and seasonal celebrations.",
-      schema: {
-        eventId: "evt_301",
-        name: "Jaipur Literature Festival",
-        type: "Cultural program",
-        startDate: "2026-10-15",
-        endDate: "2026-10-19",
-        location: "Hotel Diggi Palace",
-      },
+      status: `Installed (${eventData.length} Cultural Events)`,
+      description: "Installed from Event sheet: Pushkar Fair, Dev Deepawali, venue lat/lon, typical month.",
+      schema: eventData.slice(0, 3),
     },
     {
       number: 15,
@@ -276,14 +246,14 @@ export const DataHighlightsExplorer: React.FC = () => {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-black text-white flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-indigo-400" /> 20-Point Data & Architecture Schema Explorer
+            <Sparkles className="w-5 h-5 text-indigo-400" /> Installed Dataset & 20-Point Architecture Explorer
           </h2>
           <p className="text-xs text-slate-400 mt-0.5">
-            Click any data highlight module below to inspect its live status, JSON schema, and ingestion preview.
+            Parsed directly from <span className="text-emerald-400 font-mono font-bold">India_Travel_Prototype_Dataset.xlsx</span> (500 Destinations, 56 Places, 824 Routes, 29 Events).
           </p>
         </div>
-        <span className="text-xs font-bold text-indigo-400 bg-indigo-950 px-3 py-1 rounded-full border border-indigo-800">
-          Clickable Schema Modules
+        <span className="text-xs font-bold text-emerald-400 bg-emerald-950 px-3 py-1 rounded-full border border-emerald-800 flex items-center gap-1">
+          <CheckCircle2 className="w-3.5 h-3.5" /> Dataset Installed
         </span>
       </div>
 
@@ -291,7 +261,7 @@ export const DataHighlightsExplorer: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {modules.map((m) => {
           const Icon = m.icon;
-          const isActive = m.status.startsWith("Active");
+          const isInstalled = m.status.includes("Active") || m.status.includes("Installed");
 
           return (
             <div
@@ -309,8 +279,8 @@ export const DataHighlightsExplorer: React.FC = () => {
               <div className="flex items-start gap-3">
                 <div
                   className={`w-9 h-9 rounded-xl flex items-center justify-center text-xs shrink-0 group-hover:scale-105 transition ${
-                    isActive
-                      ? "bg-indigo-950 border border-indigo-800 text-indigo-400"
+                    isInstalled
+                      ? "bg-emerald-950 border border-emerald-800 text-emerald-400"
                       : "bg-amber-950/80 border border-amber-800 text-amber-400"
                   }`}
                 >
@@ -325,8 +295,8 @@ export const DataHighlightsExplorer: React.FC = () => {
                   <div className="mt-2">
                     <span
                       className={`inline-block text-[10px] font-bold px-2 py-0.5 rounded border ${
-                        isActive
-                          ? "bg-emerald-950/80 text-emerald-400 border-emerald-800/80"
+                        isInstalled
+                          ? "bg-emerald-950/80 text-emerald-300 border-emerald-800/80"
                           : "bg-amber-950/80 text-amber-300 border-amber-800/80"
                       }`}
                     >
@@ -342,7 +312,7 @@ export const DataHighlightsExplorer: React.FC = () => {
         })}
       </div>
 
-      {/* Coming Soon Modal */}
+      {/* Coming Soon / Dataset Preview Modal */}
       {selectedModule && (
         <ComingSoonModal
           categoryNumber={selectedModule.number}

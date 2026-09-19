@@ -1,0 +1,14 @@
+[
+  {
+    "booking_id": "EXAMPLE",
+    "trip_id": "TRIP-001",
+    "item_type": "Hotel",
+    "item_id": "H0001",
+    "booked_at": "2026-10-01 10:30",
+    "start_time": "2026-11-05 14:00",
+    "end_time": "2026-11-07 11:00",
+    "cost_inr": 18000,
+    "status": "Confirmed",
+    "confirmation_ref": "ABC123"
+  }
+]
