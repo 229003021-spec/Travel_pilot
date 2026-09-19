@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Search, Calendar, DollarSign, MapPin, Sparkles, ArrowRight, CheckCircle2, Building, Utensils, Award } from "lucide-react";
+import React, { useState, useEffect, useRef } from "react";
+import { Search, Calendar, DollarSign, MapPin, Sparkles, ArrowRight, CheckCircle2, Building, Utensils, Award, X } from "lucide-react";
 import { useTripStore } from "../store/useTripStore";
 import { ProvenanceBadge } from "../components/common/ProvenanceBadge";
 import { searchDestinationsApi, fetchDestinationOverviewApi } from "../services/api";
@@ -40,6 +40,8 @@ export const ExplorePage: React.FC = () => {
   const [selectedDest, setSelectedDest] = useState<string | null>(null);
   const [overview, setOverview] = useState<any>(null);
 
+  const isManualSelection = useRef(false);
+
   // Form states
   const [startDate, setStartDate] = useState("2026-10-01");
   const [endDate, setEndDate] = useState("2026-10-04");
@@ -47,6 +49,11 @@ export const ExplorePage: React.FC = () => {
 
   // Fetch search suggestions
   useEffect(() => {
+    if (isManualSelection.current) {
+      isManualSelection.current = false;
+      return;
+    }
+
     if (!query.trim()) {
       setSearchResults([]);
       setShowDropdown(false);
@@ -63,7 +70,7 @@ export const ExplorePage: React.FC = () => {
       } catch (err) {
         console.error(err);
       }
-    }, 150);
+    }, 100);
 
     return () => clearTimeout(timer);
   }, [query]);
@@ -78,9 +85,21 @@ export const ExplorePage: React.FC = () => {
   }, [selectedDest]);
 
   const handleSelectDestination = (cityName: string) => {
+    isManualSelection.current = true;
     setSelectedDest(cityName);
     setQuery(cityName);
     setShowDropdown(false);
+  };
+
+  const handleSearchFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!query.trim()) return;
+
+    if (searchResults.length > 0) {
+      handleSelectDestination(searchResults[0].city);
+    } else {
+      handleSelectDestination(query.trim());
+    }
   };
 
   const handleStartPlanning = (e: React.FormEvent) => {
@@ -118,32 +137,44 @@ export const ExplorePage: React.FC = () => {
 
           {/* Search Bar Container */}
           <div className="relative max-w-2xl mx-auto z-20">
-            <div className="relative flex items-center bg-slate-900 border-2 border-blue-600/80 rounded-2xl shadow-2xl shadow-blue-950 focus-within:border-blue-400 transition">
-              <Search className="w-6 h-6 text-blue-400 ml-4 shrink-0" />
+            <form onSubmit={handleSearchFormSubmit} className="relative flex items-center bg-slate-900 border-2 border-blue-600/80 rounded-2xl shadow-2xl shadow-blue-950 focus-within:border-blue-400 transition p-1.5">
+              <Search className="w-6 h-6 text-blue-400 ml-3 shrink-0" />
               <input
                 type="text"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                onFocus={() => query.trim() && setShowDropdown(true)}
+                onChange={(e) => {
+                  isManualSelection.current = false;
+                  setQuery(e.target.value);
+                }}
+                onFocus={() => query.trim() && !isManualSelection.current && setShowDropdown(true)}
                 placeholder="Search destination (e.g. Bangalore, Jaipur, Goa, Tamil Nadu...)"
-                className="w-full bg-transparent px-4 py-4 text-white text-lg placeholder-slate-400 focus:outline-none"
+                className="w-full bg-transparent px-3 py-3 text-white text-base sm:text-lg placeholder-slate-400 focus:outline-none"
               />
               {query && (
                 <button
+                  type="button"
                   onClick={() => {
                     setQuery("");
+                    setSelectedDest(null);
                     setShowDropdown(false);
                   }}
-                  className="mr-3 px-2 py-1 text-xs text-slate-400 hover:text-white bg-slate-800 rounded-md"
+                  className="p-2 text-slate-400 hover:text-white rounded-lg transition"
                 >
-                  Clear
+                  <X className="w-5 h-5" />
                 </button>
               )}
-            </div>
+              <button
+                type="submit"
+                className="px-5 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl shadow-md transition flex items-center gap-2 shrink-0 ml-1"
+              >
+                <span>Search</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </form>
 
             {/* Vertical Alphabetical Suggestions Dropdown */}
             {showDropdown && searchResults.length > 0 && (
-              <div className="absolute left-0 right-0 top-full mt-2 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl overflow-hidden max-h-80 overflow-y-auto text-left z-30 divide-y divide-slate-800">
+              <div className="absolute left-0 right-0 top-full mt-2 bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden max-h-80 overflow-y-auto text-left z-30 divide-y divide-slate-800">
                 <div className="px-4 py-2 bg-slate-950 text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
                   <span>Matching Destinations ({searchResults.length})</span>
                   <ProvenanceBadge type="verified" label="VERIFIED DATASET" />
@@ -152,7 +183,7 @@ export const ExplorePage: React.FC = () => {
                   <div
                     key={index}
                     onClick={() => handleSelectDestination(item.city)}
-                    className="px-4 py-3 hover:bg-blue-950/60 cursor-pointer flex items-center justify-between transition group"
+                    className="px-4 py-3 hover:bg-blue-950/80 cursor-pointer flex items-center justify-between transition group"
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-lg bg-blue-900/40 text-blue-400 flex items-center justify-center font-bold text-sm">
@@ -180,7 +211,7 @@ export const ExplorePage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 pt-10">
         {/* Selected Destination Card */}
         {selectedDest && (
-          <div className="mb-12 bg-slate-900/90 border border-blue-500/40 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-blue-950/50 backdrop-blur">
+          <div className="mb-12 bg-slate-900/90 border border-blue-500/40 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-blue-950/50 backdrop-blur animate-in fade-in duration-300">
             <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
               <div>
                 <span className="text-xs font-bold text-blue-400 uppercase tracking-widest">
