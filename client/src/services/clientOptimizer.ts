@@ -75,35 +75,41 @@ const placesByCity = new Map<string, any[]>();
 const hotelsByCity = new Map<string, any[]>();
 const eventsByCity = new Map<string, any[]>();
 
-// Initialize indexes
+// Initialize indexes with null-safety
 (destinationData as any[]).forEach((d) => {
-  destinationMap.set(d.dest_id.toLowerCase(), d);
-  destinationMap.set(d.city.toLowerCase(), d);
+  if (d) {
+    const c = (d.city || d.name || "").toString().toLowerCase();
+    const id = (d.dest_id || "").toString().toLowerCase();
+    if (id) destinationMap.set(id, d);
+    if (c) destinationMap.set(c, d);
+  }
 });
 
 (placeData as any[]).forEach((p) => {
-  if (p.dest_id) {
-    if (!placesByDestId.has(p.dest_id)) placesByDestId.set(p.dest_id, []);
-    placesByDestId.get(p.dest_id)!.push(p);
-  }
-  if (p.city) {
-    const cLower = p.city.toLowerCase();
-    if (!placesByCity.has(cLower)) placesByCity.set(cLower, []);
-    placesByCity.get(cLower)!.push(p);
+  if (p) {
+    if (p.dest_id) {
+      if (!placesByDestId.has(p.dest_id)) placesByDestId.set(p.dest_id, []);
+      placesByDestId.get(p.dest_id)!.push(p);
+    }
+    if (p.city) {
+      const cLower = p.city.toString().toLowerCase();
+      if (!placesByCity.has(cLower)) placesByCity.set(cLower, []);
+      placesByCity.get(cLower)!.push(p);
+    }
   }
 });
 
 (hotelData as any[]).forEach((h) => {
-  if (h.city) {
-    const cLower = h.city.toLowerCase();
+  if (h && h.city) {
+    const cLower = h.city.toString().toLowerCase();
     if (!hotelsByCity.has(cLower)) hotelsByCity.set(cLower, []);
     hotelsByCity.get(cLower)!.push(h);
   }
 });
 
 (eventData as any[]).forEach((e) => {
-  if (e.city) {
-    const cLower = e.city.toLowerCase();
+  if (e && e.city) {
+    const cLower = e.city.toString().toLowerCase();
     if (!eventsByCity.has(cLower)) eventsByCity.set(cLower, []);
     eventsByCity.get(cLower)!.push(e);
   }
@@ -113,41 +119,42 @@ export function resolveDestinationQuery(query: string) {
   if (!query) return null;
   let qLower = query.trim().toLowerCase();
 
-  // Alias lookup
   if (CITY_ALIASES[qLower]) {
     qLower = CITY_ALIASES[qLower].toLowerCase();
   }
 
-  // Direct match in map
   if (destinationMap.has(qLower)) {
     const d = destinationMap.get(qLower);
-    const coords = DEST_COORDINATES[d.city.toLowerCase()] || { lat: d.latitude || 20.5937, lng: d.longitude || 78.9629 };
-    return { ...d, latitude: coords.lat, longitude: coords.lng, provenance: "VERIFIED" };
+    const cityKey = (d.city || d.name || "").toString().toLowerCase();
+    const coords = DEST_COORDINATES[cityKey] || { lat: d.latitude || 20.5937, lng: d.longitude || 78.9629 };
+    return { ...d, city: d.city || d.name, latitude: coords.lat, longitude: coords.lng, provenance: "VERIFIED" };
   }
 
-  // Partial search in prototype dataset
-  const matchProto = (destinationData as any[]).find(
-    (d) =>
-      d.city.toLowerCase().includes(qLower) ||
-      d.state.toLowerCase().includes(qLower) ||
-      qLower.includes(d.city.toLowerCase())
-  );
+  const matchProto = (destinationData as any[]).find((d) => {
+    if (!d) return false;
+    const c = (d.city || "").toString().toLowerCase();
+    const s = (d.state || "").toString().toLowerCase();
+    return c.includes(qLower) || s.includes(qLower) || qLower.includes(c);
+  });
+
   if (matchProto) {
-    const coords = DEST_COORDINATES[matchProto.city.toLowerCase()] || { lat: matchProto.latitude || 20.5937, lng: matchProto.longitude || 78.9629 };
+    const cityKey = (matchProto.city || "").toString().toLowerCase();
+    const coords = DEST_COORDINATES[cityKey] || { lat: matchProto.latitude || 20.5937, lng: matchProto.longitude || 78.9629 };
     return { ...matchProto, latitude: coords.lat, longitude: coords.lng, provenance: "VERIFIED" };
   }
 
-  // Search Top 500 dataset
-  const matchTop500 = (top500Data as any[]).find(
-    (d) =>
-      d.name.toLowerCase().includes(qLower) ||
-      d.state.toLowerCase().includes(qLower) ||
-      qLower.includes(d.name.toLowerCase())
-  );
+  const matchTop500 = (top500Data as any[]).find((d) => {
+    if (!d) return false;
+    const n = (d.name || "").toString().toLowerCase();
+    const s = (d.state || "").toString().toLowerCase();
+    return n.includes(qLower) || s.includes(qLower) || qLower.includes(n);
+  });
+
   if (matchTop500) {
-    const coords = DEST_COORDINATES[matchTop500.name.toLowerCase()] || { lat: matchTop500.lat || 20.5937, lng: matchTop500.lng || 78.9629 };
+    const nameKey = (matchTop500.name || "").toString().toLowerCase();
+    const coords = DEST_COORDINATES[nameKey] || { lat: matchTop500.lat || 20.5937, lng: matchTop500.lng || 78.9629 };
     return {
-      dest_id: matchTop500.id || `D_${matchTop500.name.substring(0, 3).toUpperCase()}`,
+      dest_id: matchTop500.id || `D_${(matchTop500.name || "DEST").substring(0, 3).toUpperCase()}`,
       city: matchTop500.name,
       state: matchTop500.state,
       region: matchTop500.region || "India",
@@ -168,44 +175,63 @@ export function searchDestinationsClient(query: string) {
   let q = (query || "").toString().toLowerCase().trim();
   if (CITY_ALIASES[q]) q = CITY_ALIASES[q].toLowerCase();
 
-  const allProto = (destinationData as any[]).map((d) => {
-    const coords = DEST_COORDINATES[d.city.toLowerCase()] || { lat: d.latitude || 20.5937, lng: d.longitude || 78.9629 };
-    return { ...d, latitude: coords.lat, longitude: coords.lng, provenance: "VERIFIED" };
-  });
+  const allProto = (destinationData as any[])
+    .filter((d) => d && (d.city || d.name))
+    .map((d) => {
+      const cityStr = (d.city || d.name || "").toString();
+      const cityKey = cityStr.toLowerCase();
+      const coords = DEST_COORDINATES[cityKey] || { lat: d.latitude || 20.5937, lng: d.longitude || 78.9629 };
+      return {
+        dest_id: d.dest_id || `D_${cityStr.substring(0, 3).toUpperCase()}`,
+        city: cityStr,
+        state: (d.state || "India").toString(),
+        region: (d.region || "India").toString(),
+        type: (d.type || "Tourism").toString(),
+        ideal_stay_days: d.ideal_stay_days || 3,
+        best_season: d.best_season || "Oct–Mar",
+        latitude: coords.lat,
+        longitude: coords.lng,
+        provenance: "VERIFIED"
+      };
+    });
 
   if (!q) {
     return allProto.sort((a, b) => a.city.localeCompare(b.city)).slice(0, 30);
   }
 
-  const results = allProto.filter(
-    (d) =>
-      d.city.toLowerCase().includes(q) ||
-      d.state.toLowerCase().includes(q) ||
-      (d.dest_id && d.dest_id.toLowerCase().includes(q))
-  );
+  const results = allProto.filter((d) => {
+    const c = d.city.toLowerCase();
+    const s = d.state.toLowerCase();
+    const id = (d.dest_id || "").toLowerCase();
+    return c.includes(q) || s.includes(q) || id.includes(q) || q.includes(c);
+  });
 
-  // Search Top 500 if few results
-  if (results.length < 5) {
-    const topMatches = (top500Data as any[]).filter(
-      (d) => d.name.toLowerCase().includes(q) || d.state.toLowerCase().includes(q)
-    );
-    topMatches.forEach((t) => {
-      if (!results.some((r) => r.city.toLowerCase() === t.name.toLowerCase())) {
-        results.push({
-          dest_id: t.id || `D_${t.name.substring(0, 3).toUpperCase()}`,
-          city: t.name,
-          state: t.state,
-          region: t.region || "India",
-          type: t.type || "Sightseeing",
-          ideal_stay_days: t.idealDurationDays || 3,
-          latitude: t.lat || 20.5937,
-          longitude: t.lng || 78.9629,
-          best_season: t.bestTimeToVisit || "Oct–Mar",
-          provenance: "VERIFIED"
-        });
-      }
-    });
-  }
+  // Search Top 500 dataset for additional results
+  const topMatches = (top500Data as any[]).filter((d) => {
+    if (!d || !d.name) return false;
+    const n = d.name.toString().toLowerCase();
+    const s = (d.state || "").toString().toLowerCase();
+    return n.includes(q) || s.includes(q) || q.includes(n);
+  });
+
+  topMatches.forEach((t) => {
+    const cityName = t.name.toString();
+    if (!results.some((r) => r.city.toLowerCase() === cityName.toLowerCase())) {
+      const coords = DEST_COORDINATES[cityName.toLowerCase()] || { lat: t.lat || 20.5937, lng: t.lng || 78.9629 };
+      results.push({
+        dest_id: t.id || `D_${cityName.substring(0, 3).toUpperCase()}`,
+        city: cityName,
+        state: (t.state || "India").toString(),
+        region: (t.region || "India").toString(),
+        type: (t.type || "Sightseeing").toString(),
+        ideal_stay_days: t.idealDurationDays || 3,
+        best_season: t.bestTimeToVisit || "Oct–Mar",
+        latitude: coords.lat,
+        longitude: coords.lng,
+        provenance: "VERIFIED"
+      });
+    }
+  });
 
   return results.sort((a, b) => a.city.localeCompare(b.city)).slice(0, 30);
 }
@@ -224,16 +250,17 @@ export function getPlacesClient(destId?: string, city?: string) {
 
   if (matched.length > 0) {
     return matched.map((p, idx) => {
-      const isClosedFri = p.name.toLowerCase().includes("taj mahal");
+      const pName = (p.name || "Attraction").toString();
+      const isClosedFri = pName.toLowerCase().includes("taj mahal");
       return {
         id: p.place_id || `P_${idx}`,
-        name: p.name,
-        category: (p.category || "attraction").toLowerCase(),
+        name: pName,
+        category: (p.category || "attraction").toString().toLowerCase(),
         tags: [p.category || "sightseeing", "heritage"],
-        description: `${p.name} - ${p.category} in ${p.city}. Source: ${p.source}`,
+        description: `${pName} in ${p.city || city}. Source: ${p.source || "Dataset"}`,
         lat: baseCoords.lat + (idx * 0.007 - 0.01),
         lng: baseCoords.lng + (idx * 0.007 - 0.01),
-        area: `${p.city} Central`,
+        area: `${p.city || city} Central`,
         indoor: p.category === "Museum" || p.category === "Palace",
         walkingIntensity: 2,
         durationMin: p.category === "Heritage" ? 120 : 90,
@@ -262,7 +289,7 @@ export function getPlacesClient(destId?: string, city?: string) {
 
   // Top 500 fallback
   const tMatch = (top500Data as any[]).find(
-    (d) => d.name.toLowerCase() === cityLower || cityLower.includes(d.name.toLowerCase())
+    (d) => d && d.name && (d.name.toString().toLowerCase() === cityLower || cityLower.includes(d.name.toString().toLowerCase()))
   );
   if (tMatch && tMatch.attractions) {
     return tMatch.attractions.map((att: string, aIdx: number) => ({
@@ -342,7 +369,7 @@ export function generateTripClient(payload: any): Trip {
   const activityPool = getPlacesClient(destId, destName);
   const hotels = getHotelsClient(destId, destName);
   const restaurants = getRestaurantsClient(destId, destName);
-  const events = eventsByCity.get(destName.toLowerCase()) || [];
+  const events = eventsByCity.get((destName || "").toLowerCase()) || [];
 
   const startingPoint = payload.startingPoint || {
     type: "center",
@@ -386,17 +413,14 @@ export function generateTripClient(payload: any): Trip {
     lastUpdated: new Date().toISOString(),
   };
 
-  // Run 17-step optimizer engine
   const { itinerary, statistics, whyThisPlan } = generateOptimizedItinerary(tempTrip);
   tempTrip.itinerary = itinerary;
   tempTrip.statistics = statistics;
   tempTrip.whyThisPlan = whyThisPlan;
 
-  // Generate alternative plans
   const plans = generateAlternativePlans(tempTrip);
   tempTrip.plans = plans;
 
-  // Detect conflicts
   const conflicts = detectConflicts(tempTrip);
   tempTrip.alerts = conflicts.map((c: any, i: number) => ({
     id: `cfl_${i}_${Date.now()}`,

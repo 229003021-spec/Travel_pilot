@@ -3,6 +3,7 @@ import { Search, Calendar, DollarSign, MapPin, Sparkles, ArrowRight, CheckCircle
 import { useTripStore } from "../store/useTripStore";
 import { ProvenanceBadge } from "../components/common/ProvenanceBadge";
 import { searchDestinationsApi, fetchDestinationOverviewApi } from "../services/api";
+import { searchDestinationsClient } from "../services/clientOptimizer";
 
 interface DestinationItem {
   dest_id?: string;
@@ -40,40 +41,39 @@ export const ExplorePage: React.FC = () => {
   const [selectedDest, setSelectedDest] = useState<string | null>(null);
   const [overview, setOverview] = useState<any>(null);
 
-  const isManualSelection = useRef(false);
+  const searchContainerRef = useRef<HTMLDivElement>(null);
 
   // Form states
   const [startDate, setStartDate] = useState("2026-10-01");
   const [endDate, setEndDate] = useState("2026-10-04");
   const [budget, setBudget] = useState(25000);
 
-  // Fetch search suggestions
+  // Instant local search calculation on query change
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setQuery(val);
+
+    const results = searchDestinationsClient(val);
+    setSearchResults(results);
+    setShowDropdown(results.length > 0);
+  };
+
+  const handleInputFocus = () => {
+    const results = searchDestinationsClient(query);
+    setSearchResults(results);
+    setShowDropdown(results.length > 0);
+  };
+
+  // Close dropdown on outside click
   useEffect(() => {
-    if (isManualSelection.current) {
-      isManualSelection.current = false;
-      return;
-    }
-
-    if (!query.trim()) {
-      setSearchResults([]);
-      setShowDropdown(false);
-      return;
-    }
-
-    const timer = setTimeout(async () => {
-      try {
-        const data = await searchDestinationsApi(query);
-        if (Array.isArray(data)) {
-          setSearchResults(data);
-          setShowDropdown(true);
-        }
-      } catch (err) {
-        console.error(err);
+    const handleClickOutside = (e: MouseEvent) => {
+      if (searchContainerRef.current && !searchContainerRef.current.contains(e.target as Node)) {
+        setShowDropdown(false);
       }
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, [query]);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   // Fetch destination overview when selected
   useEffect(() => {
@@ -85,7 +85,6 @@ export const ExplorePage: React.FC = () => {
   }, [selectedDest]);
 
   const handleSelectDestination = (cityName: string) => {
-    isManualSelection.current = true;
     setSelectedDest(cityName);
     setQuery(cityName);
     setShowDropdown(false);
@@ -136,17 +135,14 @@ export const ExplorePage: React.FC = () => {
           </p>
 
           {/* Search Bar Container */}
-          <div className="relative max-w-2xl mx-auto z-20">
+          <div ref={searchContainerRef} className="relative max-w-2xl mx-auto z-20">
             <form onSubmit={handleSearchFormSubmit} className="relative flex items-center bg-slate-900 border-2 border-blue-600/80 rounded-2xl shadow-2xl shadow-blue-950 focus-within:border-blue-400 transition p-1.5">
               <Search className="w-6 h-6 text-blue-400 ml-3 shrink-0" />
               <input
                 type="text"
                 value={query}
-                onChange={(e) => {
-                  isManualSelection.current = false;
-                  setQuery(e.target.value);
-                }}
-                onFocus={() => query.trim() && !isManualSelection.current && setShowDropdown(true)}
+                onChange={handleInputChange}
+                onFocus={handleInputFocus}
                 placeholder="Search destination (e.g. Bangalore, Jaipur, Goa, Tamil Nadu...)"
                 className="w-full bg-transparent px-3 py-3 text-white text-base sm:text-lg placeholder-slate-400 focus:outline-none"
               />
@@ -176,7 +172,7 @@ export const ExplorePage: React.FC = () => {
             {showDropdown && searchResults.length > 0 && (
               <div className="absolute left-0 right-0 top-full mt-2 bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden max-h-80 overflow-y-auto text-left z-30 divide-y divide-slate-800">
                 <div className="px-4 py-2 bg-slate-950 text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
-                  <span>Matching Destinations ({searchResults.length})</span>
+                  <span>{query.trim() ? `Matching Suggestions (${searchResults.length})` : `Popular Destinations (${searchResults.length})`}</span>
                   <ProvenanceBadge type="verified" label="VERIFIED DATASET" />
                 </div>
                 {searchResults.map((item, index) => (
