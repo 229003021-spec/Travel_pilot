@@ -10,17 +10,13 @@ export async function processAssistantMessage(message, trip) {
   const text = message.toLowerCase().trim();
   const activityMap = new Map((trip.activityPool || []).map((a) => [a.id, a]));
 
-  // Check if AI API key exists for live LLM completion
   const apiKey = process.env.AI_API_KEY;
 
   if (!apiKey) {
-    // Offline Rule-Based Intent Parser
     return parseRuleBasedIntent(text, trip, activityMap);
   }
 
-  // Live LLM Provider Adapter (Optional)
   try {
-    // Standard mock structure when key provided
     return parseRuleBasedIntent(text, trip, activityMap);
   } catch (err) {
     return parseRuleBasedIntent(text, trip, activityMap);
@@ -31,21 +27,88 @@ function parseRuleBasedIntent(text, trip, activityMap) {
   let matchedAction = null;
   let replyText = "";
 
-  // 1. "How much budget is left?"
-  if (text.includes("budget") && (text.includes("left") || text.includes("remaining") || text.includes("how much"))) {
+  // 1. "Make Day [N] more relaxed"
+  if (text.includes("relaxed") && text.includes("day")) {
+    const dayMatch = text.match(/day\s*(\d+)/i);
+    const dayNum = dayMatch ? parseInt(dayMatch[1], 10) : 2;
+
+    const dayItems = trip.itinerary.filter((i) => i.day === dayNum && !i.locked);
+    if (dayItems.length > 2) {
+      const itemToRemove = dayItems[dayItems.length - 1];
+      matchedAction = { action: "REMOVE_ACTIVITY", activityId: itemToRemove.activityId };
+      replyText = `I've removed ${activityMap.get(itemToRemove.activityId)?.name || "an activity"} from Day ${dayNum} to make your schedule more relaxed.`;
+    } else {
+      replyText = `Day ${dayNum} is already very relaxed with only ${dayItems.length} activities scheduled!`;
+      return { reply: replyText, trip, changes: [], isOfflineMode: true };
+    }
+  }
+
+  // 2. "Reduce budget to ₹20,000" / "Set budget to [X]"
+  else if (text.includes("budget") && (text.includes("reduce") || text.includes("set") || text.includes("cut") || text.includes("lower"))) {
+    const numMatch = text.match(/\d+[\d,]*/);
+    let newAmount = 20000;
+    if (numMatch) {
+      newAmount = parseInt(numMatch[0].replace(/,/g, ""), 10);
+    }
+    matchedAction = { action: "CHANGE_BUDGET", amount: newAmount };
+    replyText = `I have updated your trip budget to ₹${newAmount.toLocaleString()} and re-calculated stay & transit cost allocations.`;
+  }
+
+  // 3. "Add more historical places" / "Add heritage"
+  else if (text.includes("historical") || text.includes("heritage")) {
+    const heritageCandidate = (trip.activityPool || []).find(
+      (a) => (a.category === "heritage" || a.category === "museum" || (a.tags && a.tags.includes("history"))) &&
+        !trip.itinerary.some((i) => i.activityId === a.id)
+    );
+
+    if (heritageCandidate) {
+      matchedAction = { action: "ADD_ACTIVITY", activityId: heritageCandidate.id, day: 1, preferredTime: "11:00" };
+      replyText = `Added ${heritageCandidate.name} to your Day 1 schedule to enrich historical sightseeing.`;
+    } else {
+      replyText = `Your itinerary already includes all major available historical places for this destination.`;
+      return { reply: replyText, trip, changes: [], isOfflineMode: true };
+    }
+  }
+
+  // 4. "Remove temples" / "Remove religious"
+  else if (text.includes("temple") || text.includes("religious")) {
+    const templeItem = trip.itinerary.find((i) => {
+      const act = activityMap.get(i.activityId);
+      return act && (act.category === "religious" || act.category === "temple" || act.name.toLowerCase().includes("temple"));
+    });
+
+    if (templeItem) {
+      matchedAction = { action: "REMOVE_ACTIVITY", activityId: templeItem.activityId };
+      replyText = `Removed ${activityMap.get(templeItem.activityId)?.name || "temple visit"} from your itinerary.`;
+    } else {
+      replyText = `No temple visits were found in your active itinerary.`;
+      return { reply: replyText, trip, changes: [], isOfflineMode: true };
+    }
+  }
+
+  // 5. "Add food experiences" / "Add food"
+  else if (text.includes("food") || text.includes("dining") || text.includes("culinary")) {
+    const foodCandidate = (trip.activityPool || []).find(
+      (a) => a.category === "food" && !trip.itinerary.some((i) => i.activityId === a.id)
+    );
+
+    if (foodCandidate) {
+      matchedAction = { action: "ADD_ACTIVITY", activityId: foodCandidate.id, day: 2, preferredTime: "19:30" };
+      replyText = `Added ${foodCandidate.name} to your Day 2 schedule for an authentic local dining experience.`;
+    } else {
+      replyText = `Food experiences are already scheduled into your daily lunch and dinner windows!`;
+      return { reply: replyText, trip, changes: [], isOfflineMode: true };
+    }
+  }
+
+  // 6. "How much budget is left?"
+  else if (text.includes("budget") && (text.includes("left") || text.includes("remaining") || text.includes("how much"))) {
     const b = calculateBudgetBreakdown(trip, trip.itinerary);
-    replyText = `Your total budget is ${trip.budget.currency} ${b.totalBudget.toLocaleString()}. Estimated spend is ${trip.budget.currency} ${b.estimatedSpend.toLocaleString()}, leaving ${trip.budget.currency} ${b.remaining.toLocaleString()} remaining.`;
+    replyText = `Your total budget is ₹${b.totalBudget.toLocaleString()}. Estimated spend is ₹${b.estimatedSpend.toLocaleString()}, leaving ₹${b.remaining.toLocaleString()} remaining.`;
     return { reply: replyText, trip, changes: [], isOfflineMode: true };
   }
 
-  // 2. "Make this trip cheaper" / "Lower budget"
-  if (text.includes("cheaper") || text.includes("lower budget") || text.includes("reduce budget")) {
-    const newAmount = Math.round(trip.budget.total * 0.8);
-    matchedAction = { action: "CHANGE_BUDGET", amount: newAmount };
-    replyText = `I have reduced your trip budget by 20% to ${trip.budget.currency} ${newAmount.toLocaleString()}.`;
-  }
-
-  // 3. "Remove shopping from Day 2" / "Remove [category/name]"
+  // 7. "Remove shopping from Day 2" / "Remove [category/name]"
   else if (text.includes("remove") || text.includes("delete")) {
     let targetItem = null;
     if (text.includes("shopping")) {
@@ -65,75 +128,22 @@ function parseRuleBasedIntent(text, trip, activityMap) {
     }
   }
 
-  // 4. "Move dinner to 8 PM" / "Move [item] to [time]"
-  else if (text.includes("move") || text.includes("shift")) {
-    const dinnerItem = trip.itinerary.find((i) => {
-      const act = activityMap.get(i.activityId);
-      return act && (act.mealType === "dinner" || i.startTime >= "18:00");
-    }) || trip.itinerary[0];
-
-    if (dinnerItem) {
-      const newTime = text.includes("8") || text.includes("20") ? "20:00" : "19:00";
-      matchedAction = { action: "MOVE_ACTIVITY", activityId: dinnerItem.activityId, newTime };
-    }
-  }
-
-  // 5. "Add another museum" / "Add [category]"
-  else if (text.includes("add")) {
-    const museumCandidate = trip.activityPool.find(
-      (a) => a.category === "museum" && !trip.itinerary.some((i) => i.activityId === a.id)
-    ) || trip.activityPool.find((a) => !trip.itinerary.some((i) => i.activityId === a.id));
-
-    if (museumCandidate) {
-      matchedAction = { action: "ADD_ACTIVITY", activityId: museumCandidate.id, day: 2, preferredTime: "15:00" };
-    }
-  }
-
-  // 6. "I don't want too much walking" / "Less walking"
+  // 8. "I don't want too much walking" / "Less walking"
   else if (text.includes("walking") || text.includes("walk")) {
     matchedAction = { action: "CHANGE_PREFERENCE", patch: { walking: "low" } };
   }
 
-  // 7. "What if it rains tomorrow?" / "Rain scenario"
+  // 9. "What if it rains tomorrow?" / "Rain scenario"
   else if (text.includes("rain")) {
     matchedAction = { action: "REPLAN", reason: "weather", affectedDay: 2 };
   }
 
-  // 8. "What should I do tomorrow morning?"
-  else if (text.includes("tomorrow") && text.includes("morning")) {
-    const day2Morning = trip.itinerary.filter((i) => i.day === 2 && i.startTime < "12:00");
-    if (day2Morning.length > 0) {
-      const names = day2Morning.map((i) => activityMap.get(i.activityId)?.name || i.activityId).join(" and ");
-      replyText = `On Day 2 morning, you are scheduled to visit ${names}. Make sure to start by ${day2Morning[0].startTime}.`;
-    } else {
-      replyText = `Your Day 2 morning is currently open! You can add a breakfast or cultural visit.`;
-    }
-    return { reply: replyText, trip, changes: [], isOfflineMode: true };
-  }
-
-  // 9. "Why did you choose this restaurant?" / "Why?"
-  else if (text.includes("why")) {
-    const foodItem = trip.itinerary.find((i) => {
-      const act = activityMap.get(i.activityId);
-      return act && act.category === "food";
-    }) || trip.itinerary[0];
-
-    if (foodItem) {
-      const act = activityMap.get(foodItem.activityId);
-      replyText = `I selected ${act ? act.name : foodItem.activityId} because it scored high on location efficiency, matches your food interests, and fits within your meal window without adding extra travel.`;
-    } else {
-      replyText = `Items are selected based on candidate score breakdown considering location efficiency, interest match, and budget.`;
-    }
-    return { reply: replyText, trip, changes: [], isOfflineMode: true };
-  }
-
   // 10. Fallback intent
   else {
-    replyText = `I understand your request: "${message}". Operating in offline mode with rule-based planning.`;
+    replyText = `I understand your request: "${message}". Operating in offline mode with rule-based trip modification engine.`;
     return { reply: replyText, trip, changes: [], isOfflineMode: true };
   }
 
-  // Execute action if matched
   if (matchedAction) {
     const res = applyAction(trip, matchedAction);
     return {

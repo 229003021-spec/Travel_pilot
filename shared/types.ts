@@ -1,4 +1,4 @@
-export type DataProvenance = "verified" | "estimated" | "demo";
+export type DataProvenance = "verified" | "estimated" | "demo" | "VERIFIED" | "ESTIMATED" | "LIVE" | "CALCULATED";
 
 export interface Sourced<T> {
   value: T;
@@ -12,7 +12,7 @@ export type DayOfWeek = "mon" | "tue" | "wed" | "thu" | "fri" | "sat" | "sun";
 export interface Activity {
   id: string;
   name: string;
-  category: "attraction" | "museum" | "food" | "shopping" | "nature" | "adventure" | "spiritual" | "entertainment" | "nightlife";
+  category: "attraction" | "museum" | "food" | "shopping" | "nature" | "adventure" | "spiritual" | "entertainment" | "nightlife" | string;
   tags: string[];
   description: string;
   lat: number;
@@ -26,8 +26,10 @@ export interface Activity {
   familyFriendly: boolean;
   rating?: number;
   popularity?: number;
-  mealType?: "breakfast" | "lunch" | "dinner" | "snack";
+  mealType?: "breakfast" | "lunch" | "dinner" | "snack" | string;
   status: "available" | "closed" | "cancelled" | "unavailable";
+  closedDays?: string[];
+  provenance?: DataProvenance;
 }
 
 export interface ScoreBreakdown {
@@ -98,9 +100,22 @@ export interface TripSnapshot {
   actionReason?: string;
 }
 
+export interface TripStatistics {
+  totalPlaces: number;
+  totalActivities: number;
+  totalDistanceKm: number;
+  totalTravelTimeHrs: number;
+  totalActivityTimeHrs: number;
+  avgSpendPerDay: number;
+  costPerPerson: number;
+  budgetRemaining: number;
+  travelTimeSavedMin: number;
+}
+
 export interface Trip {
   id: string;
   destination: string;
+  dest_id?: string;
   startDate: string;
   endDate: string;
   travellers: { adults: number; children: number; elderly: number };
@@ -116,7 +131,7 @@ export interface Trip {
     dayEnd: string;
     familyFriendly: boolean;
   };
-  startingPoint: { type: "hotel" | "airport" | "railway" | "custom"; name: string; lat: number; lng: number };
+  startingPoint: { type: "hotel" | "airport" | "railway" | "custom" | "center"; name: string; lat: number; lng: number };
   activityPool: Activity[];
   itinerary: ItineraryItem[];
   weather: DayWeather[];
@@ -124,6 +139,12 @@ export interface Trip {
   sources: ResearchSource[];
   history: TripSnapshot[];
   lastUpdated: string;
+  statistics?: TripStatistics;
+  whyThisPlan?: string[];
+  hotels?: any[];
+  restaurants?: any[];
+  events?: any[];
+  plans?: Record<string, any>;
 }
 
 export type Action =

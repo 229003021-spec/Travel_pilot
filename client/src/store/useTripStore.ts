@@ -11,10 +11,13 @@ export interface ChatMessage {
   timestamp: string;
 }
 
+export type TabType = "explore" | "dashboard" | "wizard" | "budget" | "map" | "sources" | "diff" | "hotels" | "restaurants";
+
 interface TripState {
   trip: Trip | null;
-  activeTab: "dashboard" | "wizard" | "budget" | "map" | "sources" | "diff";
+  activeTab: TabType;
   activeDay: number;
+  activePlanPace: "relaxed" | "balanced" | "packed";
   isGenerating: boolean;
   generationStage: number;
   isReplanning: boolean;
@@ -27,14 +30,15 @@ interface TripState {
 
   // Actions
   setTrip: (trip: Trip | null) => void;
-  setActiveTab: (tab: "dashboard" | "wizard" | "budget" | "map" | "sources" | "diff") => void;
+  setActiveTab: (tab: TabType) => void;
   setActiveDay: (day: number) => void;
+  setActivePlanPace: (pace: "relaxed" | "balanced" | "packed") => void;
   toggleAssistant: () => void;
   setWhyModal: (activity: Activity | null, score?: any) => void;
 
   // Complex Async Actions
   generateTrip: (payload: any) => Promise<void>;
-  loadDemoTrip: (destination: "jaipur" | "munnar") => Promise<void>;
+  loadDemoTrip: (destination: "jaipur" | "munnar" | "agra") => Promise<void>;
   toggleLockItem: (activityId: string) => void;
   executeAction: (action: Action) => Promise<void>;
   triggerDisruption: (disruptionId: string) => Promise<void>;
@@ -44,8 +48,9 @@ interface TripState {
 
 export const useTripStore = create<TripState>((set, get) => ({
   trip: null,
-  activeTab: "dashboard",
+  activeTab: "explore",
   activeDay: 1,
+  activePlanPace: "balanced",
   isGenerating: false,
   generationStage: 0,
   isReplanning: false,
@@ -66,54 +71,83 @@ export const useTripStore = create<TripState>((set, get) => ({
   setTrip: (trip) => set({ trip }),
   setActiveTab: (activeTab) => set({ activeTab }),
   setActiveDay: (activeDay) => set({ activeDay }),
+  setActivePlanPace: (activePlanPace) => {
+    const { trip } = get();
+    if (trip && (trip as any).plans && (trip as any).plans[activePlanPace]) {
+      const planVariant = (trip as any).plans[activePlanPace];
+      set({
+        activePlanPace,
+        trip: {
+          ...trip,
+          itinerary: planVariant.itinerary,
+          statistics: planVariant.statistics || trip.statistics,
+        },
+      });
+    } else {
+      set({ activePlanPace });
+    }
+  },
   toggleAssistant: () => set((s) => ({ isAssistantOpen: !s.isAssistantOpen })),
   setWhyModal: (activity, score = null) => set({ whyModalActivity: activity, whyModalScore: score }),
 
   generateTrip: async (payload) => {
     set({ isGenerating: true, generationStage: 0 });
 
-    for (let stage = 1; stage <= 8; stage++) {
-      await new Promise((r) => setTimeout(r, 250));
+    for (let stage = 1; stage <= 6; stage++) {
+      await new Promise((r) => setTimeout(r, 200));
       set({ generationStage: stage });
     }
 
     const trip = await generateTripApi(payload);
-    set({ trip, isGenerating: false, activeTab: "dashboard", activeDay: 1 });
+    set({ trip, isGenerating: false, activeTab: "dashboard", activeDay: 1, activePlanPace: "balanced" });
   },
 
   loadDemoTrip: async (destination) => {
     set({ isGenerating: true, generationStage: 0 });
 
-    for (let stage = 1; stage <= 8; stage++) {
-      await new Promise((r) => setTimeout(r, 200));
+    for (let stage = 1; stage <= 6; stage++) {
+      await new Promise((r) => setTimeout(r, 150));
       set({ generationStage: stage });
     }
 
-    const payload =
-      destination === "jaipur"
-        ? {
-            destination: "Jaipur",
-            startDate: "2026-10-01",
-            endDate: "2026-10-04",
-            travellers: { adults: 2, children: 0, elderly: 0 },
-            budget: { total: 20000, currency: "INR" },
-            interests: ["History", "Culture", "Food", "Architecture"],
-            preferences: { pace: "balanced", walking: "medium", dayStart: "09:00", dayEnd: "21:00", tier: "mid", familyFriendly: false, setting: "mixed", food: [] },
-            startingPoint: { type: "railway", name: "Jaipur Railway Station", lat: 26.9200, lng: 75.7950 },
-          }
-        : {
-            destination: "Munnar",
-            startDate: "2026-10-01",
-            endDate: "2026-10-03",
-            travellers: { adults: 2, children: 0, elderly: 0 },
-            budget: { total: 15000, currency: "INR" },
-            interests: ["Nature", "Food", "Photography"],
-            preferences: { pace: "balanced", walking: "medium", dayStart: "09:00", dayEnd: "21:00", tier: "mid", familyFriendly: false, setting: "mixed", food: [] },
-            startingPoint: { type: "hotel", name: "Munnar Tea Resort", lat: 10.0889, lng: 77.0595 },
-          };
+    let payload: any;
+    if (destination === "agra") {
+      payload = {
+        destination: "Agra",
+        startDate: "2026-10-01",
+        endDate: "2026-10-03",
+        travellers: { adults: 2, children: 0, elderly: 0 },
+        budget: { total: 18000, currency: "INR" },
+        interests: ["Heritage", "Architecture", "Photography"],
+        preferences: { pace: "balanced", walking: "medium", dayStart: "08:00", dayEnd: "20:00", tier: "mid" },
+        startingPoint: { type: "railway", name: "Agra Cantt Railway Station", lat: 27.1582, lng: 78.0064 },
+      };
+    } else if (destination === "munnar") {
+      payload = {
+        destination: "Munnar",
+        startDate: "2026-10-01",
+        endDate: "2026-10-03",
+        travellers: { adults: 2, children: 0, elderly: 0 },
+        budget: { total: 15000, currency: "INR" },
+        interests: ["Nature", "Food", "Photography"],
+        preferences: { pace: "balanced", walking: "medium", dayStart: "09:00", dayEnd: "21:00", tier: "mid" },
+        startingPoint: { type: "hotel", name: "Munnar Tea Resort", lat: 10.0889, lng: 77.0595 },
+      };
+    } else {
+      payload = {
+        destination: "Jaipur",
+        startDate: "2026-10-01",
+        endDate: "2026-10-04",
+        travellers: { adults: 2, children: 0, elderly: 0 },
+        budget: { total: 20000, currency: "INR" },
+        interests: ["History", "Culture", "Food", "Architecture"],
+        preferences: { pace: "balanced", walking: "medium", dayStart: "09:00", dayEnd: "21:00", tier: "mid" },
+        startingPoint: { type: "railway", name: "Jaipur Railway Station", lat: 26.9200, lng: 75.7950 },
+      };
+    }
 
     const trip = await generateTripApi(payload);
-    set({ trip, isGenerating: false, activeTab: "dashboard", activeDay: 1 });
+    set({ trip, isGenerating: false, activeTab: "dashboard", activeDay: 1, activePlanPace: "balanced" });
   },
 
   toggleLockItem: (activityId) => {
@@ -147,11 +181,11 @@ export const useTripStore = create<TripState>((set, get) => ({
     set({ isReplanning: true, replanPipelineStage: "DETECTED" });
     await new Promise((r) => setTimeout(r, 400));
     set({ replanPipelineStage: "ANALYZING" });
-    await new Promise((r) => setTimeout(r, 500));
+    await new Promise((r) => setTimeout(r, 400));
     set({ replanPipelineStage: "SEARCHING" });
-    await new Promise((r) => setTimeout(r, 500));
+    await new Promise((r) => setTimeout(r, 400));
     set({ replanPipelineStage: "OPTIMIZING" });
-    await new Promise((r) => setTimeout(r, 500));
+    await new Promise((r) => setTimeout(r, 400));
 
     let action: Action;
     if (disruptionId === "amber_fort_closed") {
@@ -171,7 +205,7 @@ export const useTripStore = create<TripState>((set, get) => ({
       replanResult: res.replanResult || null,
       replanPipelineStage: "REPLANNED",
       isReplanning: false,
-      activeTab: "diff", // Land on Before/After Diff View
+      activeTab: "diff",
     });
   },
 

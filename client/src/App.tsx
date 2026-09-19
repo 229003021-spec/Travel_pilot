@@ -1,8 +1,10 @@
 import React from "react";
 import { useTripStore } from "./store/useTripStore";
 import { Navbar } from "./components/common/Navbar";
-import { LandingPage } from "./pages/LandingPage";
+import { ExplorePage } from "./pages/ExplorePage";
 import { DashboardPage } from "./pages/DashboardPage";
+import { HotelsPage } from "./pages/HotelsPage";
+import { RestaurantsPage } from "./pages/RestaurantsPage";
 import { TripWizard } from "./components/wizard/TripWizard";
 import { BeforeAfterView } from "./components/diff/BeforeAfterView";
 import { BudgetBreakdownView } from "./components/budget/BudgetBreakdownView";
@@ -17,20 +19,48 @@ export const App: React.FC = () => {
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
       <Navbar />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 py-6">
-        {!trip && activeTab !== "wizard" && <LandingPage />}
+      <main className="flex-1 w-full mx-auto">
+        {activeTab === "explore" && <ExplorePage />}
 
-        {activeTab === "wizard" && <TripWizard />}
+        {activeTab === "wizard" && (
+          <div className="max-w-7xl mx-auto px-4 py-6">
+            <TripWizard />
+          </div>
+        )}
 
-        {trip && activeTab === "dashboard" && <DashboardPage />}
+        {activeTab === "dashboard" && (
+          <div className="max-w-7xl mx-auto px-4 py-6">
+            <DashboardPage />
+          </div>
+        )}
 
-        {trip && activeTab === "diff" && <BeforeAfterView />}
+        {activeTab === "hotels" && <HotelsPage />}
 
-        {trip && activeTab === "budget" && <BudgetBreakdownView />}
+        {activeTab === "restaurants" && <RestaurantsPage />}
 
-        {trip && activeTab === "map" && <MapView />}
+        {activeTab === "diff" && (
+          <div className="max-w-7xl mx-auto px-4 py-6">
+            <BeforeAfterView />
+          </div>
+        )}
 
-        {trip && activeTab === "sources" && <ResearchSourcesView />}
+        {activeTab === "budget" && (
+          <div className="max-w-7xl mx-auto px-4 py-6">
+            <BudgetBreakdownView />
+          </div>
+        )}
+
+        {activeTab === "map" && (
+          <div className="max-w-7xl mx-auto px-4 py-6">
+            <MapView />
+          </div>
+        )}
+
+        {activeTab === "sources" && (
+          <div className="max-w-7xl mx-auto px-4 py-6">
+            <ResearchSourcesView />
+          </div>
+        )}
       </main>
 
       <ChatDrawer />
