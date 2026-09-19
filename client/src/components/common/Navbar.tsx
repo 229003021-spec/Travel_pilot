@@ -1,6 +1,6 @@
 import React from "react";
 import { useTripStore } from "../../store/useTripStore";
-import { Compass, Calendar, PieChart, Map, BookOpen, GitCompare, MessageSquare, Zap, RefreshCw } from "lucide-react";
+import { Compass, Calendar, PieChart, Map, BookOpen, GitCompare, MessageSquare, Zap, RefreshCw, Layers } from "lucide-react";
 
 export const Navbar: React.FC = () => {
   const { trip, activeTab, setActiveTab, toggleAssistant, isAssistantOpen, loadDemoTrip, undoLastAction, setTrip } = useTripStore();

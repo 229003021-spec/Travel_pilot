@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { SearchAutocomplete } from "../components/landing/SearchAutocomplete";
 import { FamousPlacesGrid } from "../components/landing/FamousPlacesGrid";
+import { DataHighlightsExplorer } from "../components/schema/DataHighlightsExplorer";
 import { PlanningModal } from "../components/planning/PlanningModal";
 import { useTripStore } from "../store/useTripStore";
 import { Compass, Sparkles, Cpu, RefreshCw, BarChart3, HelpCircle, ArrowRight } from "lucide-react";
@@ -51,6 +52,9 @@ export const LandingPage: React.FC = () => {
 
       {/* Famous Places in India (15 Cards) */}
       <FamousPlacesGrid onSelectPlace={(placeName) => setSelectedDestination(placeName)} />
+
+      {/* 20-Point Data & Architecture Schema Explorer */}
+      <DataHighlightsExplorer />
 
       {/* Feature Highlights */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
