@@ -1,0 +1,545 @@
+[
+  {
+    "id": "mnr_tea_museum",
+    "name": "KDHP Tea Museum & Factory Tour",
+    "category": "museum",
+    "tags": ["museum", "nature", "culture", "food"],
+    "description": "Historic tea processing unit demonstrating traditional tea leaf crushing, processing, and tasting sessions.",
+    "lat": 10.0805,
+    "lng": 77.0601,
+    "area": "Town",
+    "indoor": true,
+    "walkingIntensity": 1,
+    "durationMin": 90,
+    "costPerPerson": { "value": 120, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": "closed",
+        "tue": [["09:00", "17:00"]],
+        "wed": [["09:00", "17:00"]],
+        "thu": [["09:00", "17:00"]],
+        "fri": [["09:00", "17:00"]],
+        "sat": [["09:00", "17:00"]],
+        "sun": [["09:00", "17:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.6,
+    "popularity": 0.92,
+    "status": "available"
+  },
+  {
+    "id": "mnr_eravikulam",
+    "name": "Eravikulam National Park (Rajamalai)",
+    "category": "nature",
+    "tags": ["nature", "photography", "adventure"],
+    "description": "High-altitude sanctuary home to endangered Nilgiri Tahr mountain goats and rolling shola grassland peaks.",
+    "lat": 10.1500,
+    "lng": 77.0833,
+    "area": "Rajamalai",
+    "indoor": false,
+    "walkingIntensity": 3,
+    "durationMin": 150,
+    "costPerPerson": { "value": 200, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["07:30", "16:00"]],
+        "tue": [["07:30", "16:00"]],
+        "wed": [["07:30", "16:00"]],
+        "thu": [["07:30", "16:00"]],
+        "fri": [["07:30", "16:00"]],
+        "sat": [["07:30", "16:00"]],
+        "sun": [["07:30", "16:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.7,
+    "popularity": 0.97,
+    "status": "available"
+  },
+  {
+    "id": "mnr_mattupetty_dam",
+    "name": "Mattupetty Dam & Lake Boating",
+    "category": "nature",
+    "tags": ["nature", "photography"],
+    "description": "Scenic masonry dam reservoir surrounded by tea plantations and hills; popular for speedboating.",
+    "lat": 10.1052,
+    "lng": 77.1235,
+    "area": "Mattupetty",
+    "indoor": false,
+    "walkingIntensity": 1,
+    "durationMin": 90,
+    "costPerPerson": { "value": 300, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["09:30", "17:00"]],
+        "tue": [["09:30", "17:00"]],
+        "wed": [["09:30", "17:00"]],
+        "thu": [["09:30", "17:00"]],
+        "fri": [["09:30", "17:00"]],
+        "sat": [["09:30", "17:00"]],
+        "sun": [["09:30", "17:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.4,
+    "popularity": 0.88,
+    "status": "available"
+  },
+  {
+    "id": "mnr_punarjani_cultural",
+    "name": "Punarjani Traditional Cultural Village",
+    "category": "entertainment",
+    "tags": ["culture", "entertainment", "family"],
+    "description": "Indoor cultural theater performance presenting authentic Kathakali dance and Kalaripayattu martial arts.",
+    "lat": 10.0520,
+    "lng": 77.0410,
+    "area": "Anachal",
+    "indoor": true,
+    "walkingIntensity": 1,
+    "durationMin": 120,
+    "costPerPerson": { "value": 400, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["17:00", "20:00"]],
+        "tue": [["17:00", "20:00"]],
+        "wed": [["17:00", "20:00"]],
+        "thu": [["17:00", "20:00"]],
+        "fri": [["17:00", "20:00"]],
+        "sat": [["17:00", "20:00"]],
+        "sun": [["17:00", "20:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.8,
+    "popularity": 0.94,
+    "status": "available"
+  },
+  {
+    "id": "mnr_spice_garden",
+    "name": "Green Land Spice Plantation Walk & Shop",
+    "category": "nature",
+    "tags": ["nature", "food", "culture"],
+    "description": "Guided herbal and spice garden tour featuring cardamom, cinnamon, pepper, vanilla, and organic oils.",
+    "lat": 10.0450,
+    "lng": 77.0380,
+    "area": "Anachal",
+    "indoor": true,
+    "walkingIntensity": 1,
+    "durationMin": 75,
+    "costPerPerson": { "value": 150, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["08:00", "18:00"]],
+        "tue": [["08:00", "18:00"]],
+        "wed": [["08:00", "18:00"]],
+        "thu": [["08:00", "18:00"]],
+        "fri": [["08:00", "18:00"]],
+        "sat": [["08:00", "18:00"]],
+        "sun": [["08:00", "18:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.5,
+    "popularity": 0.86,
+    "status": "available"
+  },
+  {
+    "id": "mnr_echo_point",
+    "name": "Top Station Road Echo Point",
+    "category": "nature",
+    "tags": ["nature", "photography"],
+    "description": "Natural acoustic phenomenon spot along the serene lake reservoir surrounded by mist-covered hills.",
+    "lat": 10.1200,
+    "lng": 77.1500,
+    "area": "Mattupetty",
+    "indoor": false,
+    "walkingIntensity": 2,
+    "durationMin": 60,
+    "costPerPerson": { "value": 30, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["07:00", "18:00"]],
+        "tue": [["07:00", "18:00"]],
+        "wed": [["07:00", "18:00"]],
+        "thu": [["07:00", "18:00"]],
+        "fri": [["07:00", "18:00"]],
+        "sat": [["07:00", "18:00"]],
+        "sun": [["07:00", "18:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.3,
+    "popularity": 0.85,
+    "status": "available"
+  },
+  {
+    "id": "mnr_top_station",
+    "name": "Top Station Panoramic Viewpoint",
+    "category": "nature",
+    "tags": ["nature", "photography"],
+    "description": "Highest point on Munnar-Kodaikanal road (1700m) with sweeping views of the Western Ghats and Tamil Nadu plains.",
+    "lat": 10.1250,
+    "lng": 77.2450,
+    "area": "Top Station",
+    "indoor": false,
+    "walkingIntensity": 3,
+    "durationMin": 120,
+    "costPerPerson": { "value": 50, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["06:00", "17:30"]],
+        "tue": [["06:00", "17:30"]],
+        "wed": [["06:00", "17:30"]],
+        "thu": [["06:00", "17:30"]],
+        "fri": [["06:00", "17:30"]],
+        "sat": [["06:00", "17:30"]],
+        "sun": [["06:00", "17:30"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.6,
+    "popularity": 0.90,
+    "status": "available"
+  },
+  {
+    "id": "mnr_attukad_waterfalls",
+    "name": "Attukad Waterfalls View & Trek",
+    "category": "nature",
+    "tags": ["nature", "adventure", "photography"],
+    "description": "Cascading mountain waterfall nestled between steep terraced tea hills and wooden bridges.",
+    "lat": 10.0560,
+    "lng": 77.0480,
+    "area": "Town",
+    "indoor": false,
+    "walkingIntensity": 3,
+    "durationMin": 75,
+    "costPerPerson": { "value": 0, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["07:00", "18:00"]],
+        "tue": [["07:00", "18:00"]],
+        "wed": [["07:00", "18:00"]],
+        "thu": [["07:00", "18:00"]],
+        "fri": [["07:00", "18:00"]],
+        "sat": [["07:00", "18:00"]],
+        "sun": [["07:00", "18:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": false,
+    "rating": 4.5,
+    "popularity": 0.87,
+    "status": "available"
+  },
+  {
+    "id": "mnr_blossom_hydel_park",
+    "name": "Blossom International Hydel Park",
+    "category": "nature",
+    "tags": ["nature", "family"],
+    "description": "16-acre manicured park near Muthirappuzha river with flower gardens, cycling paths, and kids play area.",
+    "lat": 10.0750,
+    "lng": 77.0620,
+    "area": "Town",
+    "indoor": false,
+    "walkingIntensity": 1,
+    "durationMin": 60,
+    "costPerPerson": { "value": 40, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["09:00", "19:00"]],
+        "tue": [["09:00", "19:00"]],
+        "wed": [["09:00", "19:00"]],
+        "thu": [["09:00", "19:00"]],
+        "fri": [["09:00", "19:00"]],
+        "sat": [["09:00", "19:00"]],
+        "sun": [["09:00", "19:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.2,
+    "popularity": 0.75,
+    "status": "available"
+  },
+  {
+    "id": "mnr_ayurvedic_spa",
+    "name": "Mayura Ayurvedic Wellness Spa",
+    "category": "entertainment",
+    "tags": ["culture", "relaxation"],
+    "description": "Rejuvenating indoor traditional Kerala Abhyangam herbal oil massage and steam therapy.",
+    "lat": 10.0820,
+    "lng": 77.0630,
+    "area": "Town",
+    "indoor": true,
+    "walkingIntensity": 1,
+    "durationMin": 90,
+    "costPerPerson": { "value": 1500, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["08:00", "20:00"]],
+        "tue": [["08:00", "20:00"]],
+        "wed": [["08:00", "20:00"]],
+        "thu": [["08:00", "20:00"]],
+        "fri": [["08:00", "20:00"]],
+        "sat": [["08:00", "20:00"]],
+        "sun": [["08:00", "20:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.7,
+    "popularity": 0.89,
+    "status": "available"
+  },
+  {
+    "id": "mnr_saravana_bhavan",
+    "name": "Hotel Saravana Bhavan (Munnar Town)",
+    "category": "food",
+    "tags": ["food"],
+    "description": "High-quality South Indian vegetarian restaurant famous for crisp ghee roasts and filter coffee.",
+    "lat": 10.0860,
+    "lng": 77.0610,
+    "area": "Town",
+    "indoor": true,
+    "walkingIntensity": 1,
+    "durationMin": 45,
+    "costPerPerson": { "value": 200, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["06:30", "22:00"]],
+        "tue": [["06:30", "22:00"]],
+        "wed": [["06:30", "22:00"]],
+        "thu": [["06:30", "22:00"]],
+        "fri": [["06:30", "22:00"]],
+        "sat": [["06:30", "22:00"]],
+        "sun": [["06:30", "22:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.5,
+    "popularity": 0.91,
+    "mealType": "breakfast",
+    "status": "available"
+  },
+  {
+    "id": "mnr_eastend_diner",
+    "name": "Eastend Restaurant & Grill",
+    "category": "food",
+    "tags": ["food"],
+    "description": "Cozy hill-station diner serving authentic Kerala Sadya thali, Malabar parottas, and fish curry.",
+    "lat": 10.0875,
+    "lng": 77.0625,
+    "area": "Town",
+    "indoor": true,
+    "walkingIntensity": 1,
+    "durationMin": 60,
+    "costPerPerson": { "value": 450, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["12:00", "22:30"]],
+        "tue": [["12:00", "22:30"]],
+        "wed": [["12:00", "22:30"]],
+        "thu": [["12:00", "22:30"]],
+        "fri": [["12:00", "22:30"]],
+        "sat": [["12:00", "22:30"]],
+        "sun": [["12:00", "22:30"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.6,
+    "popularity": 0.88,
+    "mealType": "lunch",
+    "status": "available"
+  },
+  {
+    "id": "mnr_rooftop_cafe",
+    "name": "Rapsy Restaurant & Bakery",
+    "category": "food",
+    "tags": ["food", "snack"],
+    "description": "Popular budget haunt serving Spanish omelettes, parottas, hot chocolate, and homemade chocolate cakes.",
+    "lat": 10.0865,
+    "lng": 77.0608,
+    "area": "Town",
+    "indoor": true,
+    "walkingIntensity": 1,
+    "durationMin": 45,
+    "costPerPerson": { "value": 250, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["07:00", "22:00"]],
+        "tue": [["07:00", "22:00"]],
+        "wed": [["07:00", "22:00"]],
+        "thu": [["07:00", "22:00"]],
+        "fri": [["07:00", "22:00"]],
+        "sat": [["07:00", "22:00"]],
+        "sun": [["07:00", "22:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.4,
+    "popularity": 0.85,
+    "mealType": "dinner",
+    "status": "available"
+  },
+  {
+    "id": "mnr_chinnar_wildlife",
+    "name": "Chinnar Wildlife Sanctuary Border Drive",
+    "category": "nature",
+    "tags": ["nature", "wildlife", "adventure"],
+    "description": "Dry thorn scrub forest habitat home to the endangered Grizzled Giant Squirrel and wild elephants.",
+    "lat": 10.3150,
+    "lng": 77.2180,
+    "area": "Chinnar",
+    "indoor": false,
+    "walkingIntensity": 2,
+    "durationMin": 180,
+    "costPerPerson": { "value": 250, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["06:00", "17:00"]],
+        "tue": [["06:00", "17:00"]],
+        "wed": [["06:00", "17:00"]],
+        "thu": [["06:00", "17:00"]],
+        "fri": [["06:00", "17:00"]],
+        "sat": [["06:00", "17:00"]],
+        "sun": [["06:00", "17:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.5,
+    "popularity": 0.81,
+    "status": "available"
+  },
+  {
+    "id": "mnr_kundala_lake",
+    "name": "Kundala Arch Dam & Pedal Boating",
+    "category": "nature",
+    "tags": ["nature", "photography"],
+    "description": "Asia's first arch dam with cherry blossom gardens and pedal boat rides on placid turquoise waters.",
+    "lat": 10.1380,
+    "lng": 77.1950,
+    "area": "Kundala",
+    "indoor": false,
+    "walkingIntensity": 2,
+    "durationMin": 90,
+    "costPerPerson": { "value": 200, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["09:00", "17:00"]],
+        "tue": [["09:00", "17:00"]],
+        "wed": [["09:00", "17:00"]],
+        "thu": [["09:00", "17:00"]],
+        "fri": [["09:00", "17:00"]],
+        "sat": [["09:00", "17:00"]],
+        "sun": [["09:00", "17:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.4,
+    "popularity": 0.84,
+    "status": "available"
+  },
+  {
+    "id": "mnr_lockhart_gap",
+    "name": "Lockhart Gap & Tea Valley Viewpoint",
+    "category": "nature",
+    "tags": ["nature", "photography"],
+    "description": "Breathtaking gap between mountain peaks overlooking carpeted tea slopes and cloud valleys.",
+    "lat": 10.0410,
+    "lng": 77.1120,
+    "area": "Lockhart",
+    "indoor": false,
+    "walkingIntensity": 1,
+    "durationMin": 45,
+    "costPerPerson": { "value": 0, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["06:00", "18:00"]],
+        "tue": [["06:00", "18:00"]],
+        "wed": [["06:00", "18:00"]],
+        "thu": [["06:00", "18:00"]],
+        "fri": [["06:00", "18:00"]],
+        "sat": [["06:00", "18:00"]],
+        "sun": [["06:00", "18:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.6,
+    "popularity": 0.89,
+    "status": "available"
+  },
+  {
+    "id": "mnr_chocolate_factory",
+    "name": "Munnar Homemade Chocolate Factory & Tasting",
+    "category": "food",
+    "tags": ["food", "shopping", "family"],
+    "description": "Indulgent indoor artisanal chocolate shop featuring handmade nut truffles, dark chocolates, and cocoa tea.",
+    "lat": 10.0840,
+    "lng": 77.0615,
+    "area": "Town",
+    "indoor": true,
+    "walkingIntensity": 1,
+    "durationMin": 45,
+    "costPerPerson": { "value": 100, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["09:00", "21:00"]],
+        "tue": [["09:00", "21:00"]],
+        "wed": [["09:00", "21:00"]],
+        "thu": [["09:00", "21:00"]],
+        "fri": [["09:00", "21:00"]],
+        "sat": [["09:00", "21:00"]],
+        "sun": [["09:00", "21:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.7,
+    "popularity": 0.90,
+    "status": "available"
+  },
+  {
+    "id": "mnr_floramuseum",
+    "name": "Floriculture Centre (Rose Garden)",
+    "category": "nature",
+    "tags": ["nature", "photography"],
+    "description": "Terraced garden displaying rare species of roses, orchids, cacti, and flowering medicinal plants.",
+    "lat": 10.0780,
+    "lng": 77.0680,
+    "area": "Town",
+    "indoor": false,
+    "walkingIntensity": 1,
+    "durationMin": 60,
+    "costPerPerson": { "value": 50, "provenance": "demo" },
+    "openingHours": {
+      "value": {
+        "mon": [["09:00", "17:00"]],
+        "tue": [["09:00", "17:00"]],
+        "wed": [["09:00", "17:00"]],
+        "thu": [["09:00", "17:00"]],
+        "fri": [["09:00", "17:00"]],
+        "sat": [["09:00", "17:00"]],
+        "sun": [["09:00", "17:00"]]
+      },
+      "provenance": "demo"
+    },
+    "familyFriendly": true,
+    "rating": 4.3,
+    "popularity": 0.79,
+    "status": "available"
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "id": "amber_fort_closed",
+    "name": "Amber Fort Unexpected Closure",
+    "destination": "Jaipur",
+    "type": "MARK_UNAVAILABLE",
+    "activityId": "jpr_amber_fort",
+    "reason": "closed",
+    "description": "Archaeological renovation maintenance. Amber Fort is temporarily closed today."
+  },
+  {
+    "id": "munnar_heavy_rain",
+    "name": "Munnar Heavy Rain Alert",
+    "destination": "Munnar",
+    "type": "REPLAN",
+    "reason": "weather",
+    "affectedDay": 2,
+    "description": "Downpour forecasted on Day 2. Outdoor mountain trekking and dam boating compromised."
+  },
+  {
+    "id": "traffic_delay_old_city",
+    "name": "Old City Traffic Jam",
+    "destination": "Jaipur",
+    "type": "MARK_UNAVAILABLE",
+    "activityId": "jpr_johari_bazaar",
+    "reason": "delay",
+    "description": "Severe VIP convoy procession blocking Johari Bazaar access."
+  },
+  {
+    "id": "budget_reduced",
+    "name": "Budget Reduction (Cut by ₹5,000)",
+    "destination": "Jaipur",
+    "type": "CHANGE_BUDGET",
+    "amount": 15000,
+    "description": "Adjust total budget ceiling downwards to ₹15,000."
+  }
+]

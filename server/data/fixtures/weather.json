@@ -1,0 +1,13 @@
+{
+  "jaipur": [
+    { "day": 1, "date": "2026-10-01", "condition": "sunny", "tempC": 31, "rainProbability": 0.05, "provenance": "demo" },
+    { "day": 2, "date": "2026-10-02", "condition": "sunny", "tempC": 32, "rainProbability": 0.10, "provenance": "demo" },
+    { "day": 3, "date": "2026-10-03", "condition": "cloudy", "tempC": 29, "rainProbability": 0.20, "provenance": "demo" },
+    { "day": 4, "date": "2026-10-04", "condition": "sunny", "tempC": 30, "rainProbability": 0.05, "provenance": "demo" }
+  ],
+  "munnar": [
+    { "day": 1, "date": "2026-10-01", "condition": "cloudy", "tempC": 22, "rainProbability": 0.30, "provenance": "demo" },
+    { "day": 2, "date": "2026-10-02", "condition": "rainy", "tempC": 19, "rainProbability": 0.85, "provenance": "demo" },
+    { "day": 3, "date": "2026-10-03", "condition": "cloudy", "tempC": 21, "rainProbability": 0.25, "provenance": "demo" }
+  ]
+}
