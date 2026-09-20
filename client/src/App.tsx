@@ -1,5 +1,5 @@
-import React from "react";
-import { useTripStore } from "./store/useTripStore";
+import React, { useEffect } from "react";
+import { useTripStore, TabType } from "./store/useTripStore";
 import { Navbar } from "./components/common/Navbar";
 import { MobileNav } from "./components/common/MobileNav";
 import { ExplorePage } from "./pages/ExplorePage";
@@ -14,8 +14,31 @@ import { MapView } from "./components/map/MapView";
 import { ResearchSourcesView } from "./components/sources/ResearchSourcesView";
 import { ChatDrawer } from "./components/assistant/ChatDrawer";
 
+const VALID_TABS: TabType[] = ["explore", "dashboard", "wizard", "budget", "map", "sources", "diff", "hotels", "restaurants", "saved"];
+
 export const App: React.FC = () => {
-  const { trip, activeTab } = useTripStore();
+  const { trip, activeTab, setActiveTab } = useTripStore();
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace("#", "") as TabType;
+      if (VALID_TABS.includes(hash) && hash !== activeTab) {
+        setActiveTab(hash);
+      }
+    };
+
+    const initialHash = window.location.hash.replace("#", "") as TabType;
+    if (VALID_TABS.includes(initialHash)) {
+      if (initialHash !== activeTab) {
+        setActiveTab(initialHash);
+      }
+    } else if (activeTab) {
+      window.history.replaceState(null, "", `#${activeTab}`);
+    }
+
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans pb-16 md:pb-0">

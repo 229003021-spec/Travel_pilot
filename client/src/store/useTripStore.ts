@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 import { Trip, Activity, ReplanResult, Action } from "../../../shared/types";
 import { generateTripApi, applyActionApi, replanTripApi, sendAssistantMessageApi } from "../services/api";
 
@@ -46,31 +47,41 @@ interface TripState {
   sendChatMessage: (text: string) => Promise<void>;
 }
 
-export const useTripStore = create<TripState>((set, get) => ({
-  trip: null,
-  activeTab: "explore",
-  activeDay: 1,
-  activePlanPace: "balanced",
-  isGenerating: false,
-  generationStage: 0,
-  isReplanning: false,
-  replanPipelineStage: null,
-  replanResult: null,
-  isAssistantOpen: false,
-  chatMessages: [
-    {
-      id: "msg_init",
-      sender: "assistant",
-      text: "Hello! I am TravelPilot. I monitor your trip and adapt automatically when plans change. Ask me anything or tell me what to adjust!",
-      timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-    },
-  ],
-  whyModalActivity: null,
-  whyModalScore: null,
+export const useTripStore = create<TripState>()(
+  persist<TripState>(
+    (set, get) => ({
+      trip: null,
+      activeTab: "explore",
+      activeDay: 1,
+      activePlanPace: "balanced",
+      isGenerating: false,
+      generationStage: 0,
+      isReplanning: false,
+      replanPipelineStage: null,
+      replanResult: null,
+      isAssistantOpen: false,
+      chatMessages: [
+        {
+          id: "msg_init",
+          sender: "assistant",
+          text: "Hello! I am TravelPilot. I monitor your trip and adapt automatically when plans change. Ask me anything or tell me what to adjust!",
+          timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+        },
+      ],
+      whyModalActivity: null,
+      whyModalScore: null,
 
-  setTrip: (trip) => set({ trip }),
-  setActiveTab: (activeTab) => set({ activeTab }),
-  setActiveDay: (activeDay) => set({ activeDay }),
+      setTrip: (trip) => set({ trip }),
+      setActiveTab: (activeTab) => {
+        set({ activeTab });
+        if (typeof window !== "undefined") {
+          const currentHash = window.location.hash.replace("#", "");
+          if (currentHash !== activeTab) {
+            window.history.replaceState(null, "", `#${activeTab}`);
+          }
+        }
+      },
+      setActiveDay: (activeDay) => set({ activeDay }),
   setActivePlanPace: (activePlanPace) => {
     const { trip } = get();
     if (trip && (trip as any).plans && (trip as any).plans[activePlanPace]) {
@@ -262,4 +273,16 @@ export const useTripStore = create<TripState>((set, get) => ({
       set({ chatMessages: [...get().chatMessages, errorMsg] });
     }
   },
-}));
+    }),
+  {
+    name: "travelpilot_store_v2",
+    storage: createJSONStorage(() => localStorage),
+    partialize: (state: TripState): any => ({
+      trip: state.trip,
+      activeTab: state.activeTab,
+      activeDay: state.activeDay,
+      activePlanPace: state.activePlanPace,
+      chatMessages: state.chatMessages,
+    }),
+  }
+));
