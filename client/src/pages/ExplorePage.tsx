@@ -4,6 +4,7 @@ import { useTripStore } from "../store/useTripStore";
 import { ProvenanceBadge } from "../components/common/ProvenanceBadge";
 import { searchDestinationsApi, fetchDestinationOverviewApi } from "../services/api";
 import { searchDestinationsClient } from "../services/clientOptimizer";
+import top15Destinations from "../data/top15_destinations.json";
 
 interface DestinationItem {
   dest_id?: string;
@@ -15,23 +16,15 @@ interface DestinationItem {
   best_season?: string;
 }
 
-export const FAMOUS_DESTINATIONS = [
-  { name: "Taj Mahal (Agra)", city: "Agra", state: "Uttar Pradesh", type: "Heritage & Monument", img: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=800" },
-  { name: "Jaipur (Rajasthan)", city: "Jaipur", state: "Rajasthan", type: "Palaces & Culture", img: "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=800" },
-  { name: "New Delhi", city: "New Delhi", state: "Delhi", type: "Capital & History", img: "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800" },
-  { name: "Goa", city: "Goa", state: "Goa", type: "Beaches & Nightlife", img: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800" },
-  { name: "Kerala Backwaters", city: "Kerala Backwaters", state: "Kerala", type: "Nature & Houseboats", img: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800" },
-  { name: "Varanasi (Uttar Pradesh)", city: "Varanasi", state: "Uttar Pradesh", type: "Spiritual & Ghats", img: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=800" },
-  { name: "Mumbai (Maharashtra)", city: "Mumbai", state: "Maharashtra", type: "Metropolis & Colonial", img: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=800" },
-  { name: "Hampi (Karnataka)", city: "Hampi", state: "Karnataka", type: "UNESCO Ruins", img: "https://images.unsplash.com/photo-1600100395168-9844e99f6916?w=800" },
-  { name: "Leh-Ladakh", city: "Leh", state: "Ladakh", type: "Himalayas & Adventure", img: "https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?w=800" },
-  { name: "Mysuru (Karnataka)", city: "Mysuru", state: "Karnataka", type: "Royal Palaces", img: "https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=800" },
-  { name: "Udaipur (Rajasthan)", city: "Udaipur", state: "Rajasthan", type: "Lakes & Luxury", img: "https://images.unsplash.com/photo-1615836245337-f5b9b2303f10?w=800" },
-  { name: "Ajanta and Ellora Caves (Maharashtra)", city: "Aurangabad", state: "Maharashtra", type: "Ancient Rock-cut Caves", img: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?w=800" },
-  { name: "Golden Temple (Amritsar)", city: "Amritsar", state: "Punjab", type: "Sacred Shrine & Culture", img: "https://images.unsplash.com/photo-1588096344356-788874a7813a?w=800" },
-  { name: "Andaman and Nicobar Islands", city: "Port Blair", state: "Andaman & Nicobar", type: "Islands & Coral Reefs", img: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=800" },
-  { name: "Darjeeling (West Bengal)", city: "Darjeeling", state: "West Bengal", type: "Tea Gardens & Peaks", img: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800" }
-];
+export const FAMOUS_DESTINATIONS = top15Destinations.map((d) => ({
+  name: `${d.name} (${d.state})`,
+  city: d.name,
+  state: d.state,
+  type: d.type,
+  idealStayDays: d.idealStayDays,
+  bestSeason: d.bestTimeToVisit,
+  img: d.image || "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=800"
+}));
 
 export const ExplorePage: React.FC = () => {
   const { generateTrip, isGenerating, generationStage } = useTripStore();

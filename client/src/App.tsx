@@ -1,7 +1,9 @@
 import React from "react";
 import { useTripStore } from "./store/useTripStore";
 import { Navbar } from "./components/common/Navbar";
+import { MobileNav } from "./components/common/MobileNav";
 import { ExplorePage } from "./pages/ExplorePage";
+import { SavedPage } from "./pages/SavedPage";
 import { DashboardPage } from "./pages/DashboardPage";
 import { HotelsPage } from "./pages/HotelsPage";
 import { RestaurantsPage } from "./pages/RestaurantsPage";
@@ -16,11 +18,13 @@ export const App: React.FC = () => {
   const { trip, activeTab } = useTripStore();
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans pb-16 md:pb-0">
       <Navbar />
 
       <main className="flex-1 w-full mx-auto">
         {activeTab === "explore" && <ExplorePage />}
+
+        {activeTab === "saved" && <SavedPage />}
 
         {activeTab === "wizard" && (
           <div className="max-w-7xl mx-auto px-4 py-6">
@@ -64,6 +68,7 @@ export const App: React.FC = () => {
       </main>
 
       <ChatDrawer />
+      <MobileNav />
     </div>
   );
 };

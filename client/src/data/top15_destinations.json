@@ -1,0 +1,684 @@
+[
+  {
+    "id": "hackathon_dest_1_agra",
+    "name": "Agra",
+    "city": "Agra",
+    "state": "Uttar Pradesh",
+    "region": "North",
+    "type": "Heritage",
+    "lat": 27.1767,
+    "lng": 78.0081,
+    "image": "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=800",
+    "isHackathonFeatured": true,
+    "idealStayDays": 2,
+    "bestTimeToVisit": "Oct–Mar",
+    "attractions": [
+      "Taj Mahal",
+      "Mehtab Bagh"
+    ],
+    "temples": [
+      "Mankameshwar Temple"
+    ],
+    "monuments": [
+      "Agra Fort",
+      "Itmad-ud-Daulah"
+    ],
+    "food": [
+      "Mughlai cuisine",
+      "Agra Petha"
+    ],
+    "hotels": [
+      "The Oberoi Amarvilas",
+      "ITC Mughal"
+    ],
+    "nature": "Yamuna riverfront",
+    "activities": [
+      "Taj Mahal sunrise",
+      "heritage walk"
+    ],
+    "shopping": "Marble crafts",
+    "specialExperience": "Taj Mahal sunrise",
+    "provenance": "VERIFIED_EXCEL_TOP15"
+  },
+  {
+    "id": "hackathon_dest_2_jaipur",
+    "name": "Jaipur",
+    "city": "Jaipur",
+    "state": "Rajasthan",
+    "region": "West",
+    "type": "Heritage",
+    "lat": 26.9124,
+    "lng": 75.7873,
+    "image": "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=800",
+    "isHackathonFeatured": true,
+    "idealStayDays": 3,
+    "bestTimeToVisit": "Oct–Mar",
+    "attractions": [
+      "Amber Fort",
+      "Hawa Mahal",
+      "City Palace"
+    ],
+    "temples": [
+      "Govind Dev Ji",
+      "Birla Mandir"
+    ],
+    "monuments": [
+      "Jantar Mantar",
+      "City Palace"
+    ],
+    "food": [
+      "Dal Baati Churma",
+      "Rajasthani thali"
+    ],
+    "hotels": [
+      "Rambagh Palace",
+      "ITC Rajputana"
+    ],
+    "nature": "Scenic Viewpoints",
+    "activities": [
+      "Fort tour",
+      "food walk"
+    ],
+    "shopping": "Handicrafts; textiles",
+    "specialExperience": "Pink City markets",
+    "provenance": "VERIFIED_EXCEL_TOP15"
+  },
+  {
+    "id": "hackathon_dest_3_varanasi",
+    "name": "Varanasi",
+    "city": "Varanasi",
+    "state": "Uttar Pradesh",
+    "region": "North",
+    "type": "Spiritual",
+    "lat": 25.3176,
+    "lng": 82.9739,
+    "image": "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=800",
+    "isHackathonFeatured": true,
+    "idealStayDays": 3,
+    "bestTimeToVisit": "Oct–Mar",
+    "attractions": [
+      "Ghats",
+      "Sarnath"
+    ],
+    "temples": [
+      "Kashi Vishwanath",
+      "Sankat Mochan"
+    ],
+    "monuments": [
+      "Ramnagar Fort"
+    ],
+    "food": [
+      "Kachori-sabzi",
+      "Banarasi sweets"
+    ],
+    "hotels": [
+      "Taj Ganges",
+      "BrijRama Palace"
+    ],
+    "nature": "Ganges River",
+    "activities": [
+      "Ganga Aarti",
+      "boat ride"
+    ],
+    "shopping": "Banarasi silk",
+    "specialExperience": "Ganga Aarti",
+    "provenance": "VERIFIED_EXCEL_TOP15"
+  },
+  {
+    "id": "hackathon_dest_4_mysuru",
+    "name": "Mysuru",
+    "city": "Mysuru",
+    "state": "Karnataka",
+    "region": "South",
+    "type": "Heritage",
+    "lat": 12.2958,
+    "lng": 76.6394,
+    "image": "https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=800",
+    "isHackathonFeatured": true,
+    "idealStayDays": 2,
+    "bestTimeToVisit": "Oct–Feb",
+    "attractions": [
+      "Mysuru Palace",
+      "Brindavan Gardens"
+    ],
+    "temples": [
+      "Chamundeshwari Temple"
+    ],
+    "monuments": [
+      "Mysuru Palace",
+      "Jaganmohan Palace"
+    ],
+    "food": [
+      "Mysore Pak",
+      "South Indian cuisine"
+    ],
+    "hotels": [
+      "Lalitha Mahal Palace",
+      "Radisson"
+    ],
+    "nature": "Kukkarahalli Lake",
+    "activities": [
+      "Palace tour",
+      "heritage walk"
+    ],
+    "shopping": "Silk; sandalwood",
+    "specialExperience": "Palace illumination",
+    "provenance": "VERIFIED_EXCEL_TOP15"
+  },
+  {
+    "id": "hackathon_dest_5_kochi",
+    "name": "Kochi",
+    "city": "Kochi",
+    "state": "Kerala",
+    "region": "South",
+    "type": "Coastal/Culture",
+    "lat": 9.9312,
+    "lng": 76.2673,
+    "image": "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800",
+    "isHackathonFeatured": true,
+    "idealStayDays": 3,
+    "bestTimeToVisit": "Oct–Mar",
+    "attractions": [
+      "Fort Kochi",
+      "Marine Drive"
+    ],
+    "temples": [
+      "Chottanikkara Temple"
+    ],
+    "monuments": [
+      "Mattancherry Palace",
+      "St. Francis Church"
+    ],
+    "food": [
+      "Kerala seafood",
+      "appam & stew"
+    ],
+    "hotels": [
+      "Grand Hyatt",
+      "Brunton Boatyard"
+    ],
+    "nature": "Backwaters",
+    "activities": [
+      "Heritage walk",
+      "boat ride"
+    ],
+    "shopping": "Spices; handicrafts",
+    "specialExperience": "Chinese fishing nets",
+    "provenance": "VERIFIED_EXCEL_TOP15"
+  },
+  {
+    "id": "hackathon_dest_6_hampi",
+    "name": "Hampi",
+    "city": "Hampi",
+    "state": "Karnataka",
+    "region": "South",
+    "type": "Heritage/Archaeology",
+    "lat": 15.335,
+    "lng": 76.46,
+    "image": "https://images.unsplash.com/photo-1600100395168-9844e99f6916?w=800",
+    "isHackathonFeatured": true,
+    "idealStayDays": 3,
+    "bestTimeToVisit": "Oct–Feb",
+    "attractions": [
+      "Vittala Temple",
+      "Virupaksha Temple"
+    ],
+    "temples": [
+      "Virupaksha Temple"
+    ],
+    "monuments": [
+      "Stone Chariot",
+      "Royal Enclosure"
+    ],
+    "food": [
+      "Karnataka cuisine"
+    ],
+    "hotels": [
+      "Heritage stays",
+      "Hampi resorts"
+    ],
+    "nature": "Tungabhadra River",
+    "activities": [
+      "Cycling",
+      "ruins exploration"
+    ],
+    "shopping": "Handicrafts",
+    "specialExperience": "Sunset over ruins",
+    "provenance": "VERIFIED_EXCEL_TOP15"
+  },
+  {
+    "id": "hackathon_dest_7_munnar",
+    "name": "Munnar",
+    "city": "Munnar",
+    "state": "Kerala",
+    "region": "South",
+    "type": "Hill Station",
+    "lat": 10.0889,
+    "lng": 77.0595,
+    "image": "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?w=800",
+    "isHackathonFeatured": true,
+    "idealStayDays": 3,
+    "bestTimeToVisit": "Sep–Mar",
+    "attractions": [
+      "Tea gardens",
+      "Top Station"
+    ],
+    "temples": [
+      "Local temples"
+    ],
+    "monuments": [
+      "Tea Museum"
+    ],
+    "food": [
+      "Kerala cuisine"
+    ],
+    "hotels": [
+      "Tea resorts",
+      "mountain resorts"
+    ],
+    "nature": "Western Ghats",
+    "activities": [
+      "Trekking",
+      "tea tours"
+    ],
+    "shopping": "Tea products",
+    "specialExperience": "Tea plantation experience",
+    "provenance": "VERIFIED_EXCEL_TOP15"
+  },
+  {
+    "id": "hackathon_dest_8_rameswaram",
+    "name": "Rameswaram",
+    "city": "Rameswaram",
+    "state": "Tamil Nadu",
+    "region": "South",
+    "type": "Pilgrimage/Coastal",
+    "lat": 9.2876,
+    "lng": 79.3129,
+    "image": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800",
+    "isHackathonFeatured": true,
+    "idealStayDays": 2,
+    "bestTimeToVisit": "Oct–Mar",
+    "attractions": [
+      "Dhanushkodi",
+      "Pamban Bridge"
+    ],
+    "temples": [
+      "Ramanathaswamy Temple"
+    ],
+    "monuments": [
+      "Temple corridors"
+    ],
+    "food": [
+      "South Indian food"
+    ],
+    "hotels": [
+      "Daiwik Hotels",
+      "local stays"
+    ],
+    "nature": "Gulf of Mannar",
+    "activities": [
+      "Temple visit",
+      "Dhanushkodi trip"
+    ],
+    "shopping": "Shell crafts",
+    "specialExperience": "Pamban Bridge and Dhanushkodi",
+    "provenance": "VERIFIED_EXCEL_TOP15"
+  },
+  {
+    "id": "hackathon_dest_9_goa",
+    "name": "Goa",
+    "city": "Goa",
+    "state": "Goa",
+    "region": "West",
+    "type": "Beach/Leisure",
+    "lat": 15.2993,
+    "lng": 74.124,
+    "image": "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800",
+    "isHackathonFeatured": true,
+    "idealStayDays": 4,
+    "bestTimeToVisit": "Nov–Feb",
+    "attractions": [
+      "Baga",
+      "Calangute",
+      "Palolem",
+      "Old Goa"
+    ],
+    "temples": [
+      "Basilica of Bom Jesus",
+      "Shantadurga Temple"
+    ],
+    "monuments": [
+      "Old Goa churches"
+    ],
+    "food": [
+      "Goan seafood",
+      "local cuisine"
+    ],
+    "hotels": [
+      "Beach resorts",
+      "heritage hotels"
+    ],
+    "nature": "Arabian Sea",
+    "activities": [
+      "Water sports",
+      "beach hopping"
+    ],
+    "shopping": "Cashew; handicrafts",
+    "specialExperience": "Sunset beaches",
+    "provenance": "VERIFIED_EXCEL_TOP15"
+  },
+  {
+    "id": "hackathon_dest_10_leh",
+    "name": "Leh",
+    "city": "Leh",
+    "state": "Ladakh",
+    "region": "North",
+    "type": "Mountain/Adventure",
+    "lat": 34.1526,
+    "lng": 77.5771,
+    "image": "https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?w=800",
+    "isHackathonFeatured": true,
+    "idealStayDays": 5,
+    "bestTimeToVisit": "May–Sep",
+    "attractions": [
+      "Pangong Lake",
+      "Nubra Valley",
+      "monasteries"
+    ],
+    "temples": [
+      "Thiksey",
+      "Hemis"
+    ],
+    "monuments": [
+      "Leh Palace"
+    ],
+    "food": [
+      "Ladakhi cuisine",
+      "momos"
+    ],
+    "hotels": [
+      "Mountain hotels",
+      "camps"
+    ],
+    "nature": "Himalayas",
+    "activities": [
+      "Trekking",
+      "road trips"
+    ],
+    "shopping": "Tibetan handicrafts",
+    "specialExperience": "High-altitude Himalayan scenery",
+    "provenance": "VERIFIED_EXCEL_TOP15"
+  },
+  {
+    "id": "hackathon_dest_11_delhi",
+    "name": "Delhi",
+    "city": "Delhi",
+    "state": "Delhi",
+    "region": "North",
+    "type": "Capital & Heritage",
+    "lat": 28.6139,
+    "lng": 77.209,
+    "image": "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800",
+    "isHackathonFeatured": true,
+    "idealStayDays": 3,
+    "bestTimeToVisit": "Oct–Mar",
+    "attractions": [
+      "Red Fort",
+      "Qutub Minar",
+      "India Gate",
+      "Humayun's Tomb",
+      "Lotus Temple"
+    ],
+    "temples": [
+      "Akshardham Temple",
+      "Lotus Temple",
+      "Gurudwara Bangla Sahib"
+    ],
+    "monuments": [
+      "Red Fort",
+      "Qutub Minar",
+      "Humayun's Tomb",
+      "Jantar Mantar"
+    ],
+    "food": [
+      "Paranthe Wali Gali",
+      "Butter Chicken at Moti Mahal",
+      "Chole Bhature",
+      "Chandni Chowk Street Food"
+    ],
+    "hotels": [
+      "The Imperial New Delhi",
+      "Taj Palace",
+      "Radisson Blu City Centre"
+    ],
+    "nature": "Lodhi Gardens",
+    "activities": [
+      "Old Delhi Rickshaw Tour",
+      "Heritage Architecture Walk",
+      "Shopping at Dilli Haat"
+    ],
+    "shopping": [
+      "Chandni Chowk",
+      "Khan Market",
+      "Dilli Haat",
+      "Connaught Place"
+    ],
+    "specialExperience": "Sunrise walk around Humayun's Tomb and evening street food walk in Old Delhi",
+    "provenance": "VERIFIED_EXCEL_TOP15"
+  },
+  {
+    "id": "hackathon_dest_12_mathura",
+    "name": "Mathura",
+    "city": "Mathura",
+    "state": "Uttar Pradesh",
+    "region": "North",
+    "type": "Spiritual & Heritage",
+    "lat": 27.4924,
+    "lng": 77.6737,
+    "image": "https://images.unsplash.com/photo-1545128485-c400e7702796?w=800",
+    "isHackathonFeatured": true,
+    "idealStayDays": 2,
+    "bestTimeToVisit": "Oct–Mar",
+    "attractions": [
+      "Shri Krishna Janmabhoomi",
+      "Dwarkadhish Temple",
+      "Vishram Ghat",
+      "Gita Mandir"
+    ],
+    "temples": [
+      "Shri Krishna Janmbhoomi Temple",
+      "Dwarkadhish Temple",
+      "Keshavdeo Temple"
+    ],
+    "monuments": [
+      "Vishram Ghat",
+      "Kansa Qila"
+    ],
+    "food": [
+      "Mathura Peda",
+      "Kachori & Jalebi",
+      "Makhan Mishri"
+    ],
+    "hotels": [
+      "Brijwasi Royal",
+      "Hotel Lalita Grand",
+      "Radhey Krishna Stay"
+    ],
+    "nature": "Yamuna Ghats",
+    "activities": [
+      "Yamuna Boat Ride",
+      "Temple Darshan Tour",
+      "Evening Yamuna Aarti"
+    ],
+    "shopping": [
+      "Brass Idols",
+      "Peda Sweets",
+      "Handicrafts"
+    ],
+    "specialExperience": "Evening Yamuna Aarti at Vishram Ghat and tasting authentic Mathura Pedas",
+    "provenance": "VERIFIED_EXCEL_TOP15"
+  },
+  {
+    "id": "hackathon_dest_13_vrindavan",
+    "name": "Vrindavan",
+    "city": "Vrindavan",
+    "state": "Uttar Pradesh",
+    "region": "North",
+    "type": "Spiritual & Heritage",
+    "lat": 27.5807,
+    "lng": 77.7006,
+    "image": "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?w=800",
+    "isHackathonFeatured": true,
+    "idealStayDays": 2,
+    "bestTimeToVisit": "Oct–Mar",
+    "attractions": [
+      "Banke Bihari Temple",
+      "Prem Mandir",
+      "ISKCON Vrindavan",
+      "Nidhivan",
+      "Radhavallabh Temple"
+    ],
+    "temples": [
+      "Banke Bihari Temple",
+      "Prem Mandir",
+      "ISKCON Vrindavan",
+      "Radha Raman Temple"
+    ],
+    "monuments": [
+      "Madan Mohan Temple Ruins",
+      "Prem Mandir Architectural Complex"
+    ],
+    "food": [
+      "Lassi",
+      "Rabri",
+      "Kachori",
+      "Makhan Mishri"
+    ],
+    "hotels": [
+      "NVT Quality Inn Vrindavan",
+      "MVT Guesthouse & Restaurant",
+      "Brij View Stays"
+    ],
+    "nature": "Seva Kunj Gardens",
+    "activities": [
+      "Parikrama Walk",
+      "Light & Sound Show at Prem Mandir",
+      "Temple Trail"
+    ],
+    "shopping": [
+      "Devotional Items",
+      "Peacock Feathers",
+      "Chandan Paste"
+    ],
+    "specialExperience": "Spectacular evening illuminated laser show at Prem Mandir",
+    "provenance": "VERIFIED_EXCEL_TOP15"
+  },
+  {
+    "id": "hackathon_dest_14_lucknow",
+    "name": "Lucknow",
+    "city": "Lucknow",
+    "state": "Uttar Pradesh",
+    "region": "North",
+    "type": "Heritage & Culinary",
+    "lat": 26.8467,
+    "lng": 80.9462,
+    "image": "https://images.unsplash.com/photo-1627894483216-2138af692e32?w=800",
+    "isHackathonFeatured": true,
+    "idealStayDays": 3,
+    "bestTimeToVisit": "Oct–Mar",
+    "attractions": [
+      "Bara Imambara",
+      "Chota Imambara",
+      "Rumi Darwaza",
+      "British Residency",
+      "Ambedkar Memorial Park"
+    ],
+    "temples": [
+      "Hanuman Setu Temple",
+      "Mankameshwar Mandir"
+    ],
+    "monuments": [
+      "Bara Imambara & Bhool Bhulaiya",
+      "Chota Imambara",
+      "Rumi Darwaza"
+    ],
+    "food": [
+      "Tunday Kababi Galouti Kebabs",
+      "Basket Chaat at Royal Cafe",
+      "Lucknawi Biryani",
+      "Malai Paan"
+    ],
+    "hotels": [
+      "Taj Mahal Lucknow",
+      "Hyatt Regency Lucknow",
+      "Renaissance Lucknow Hotel"
+    ],
+    "nature": "Janeshwar Mishra Park",
+    "activities": [
+      "Bhool Bhulaiya Labyrinth Tour",
+      "Hazratganj Heritage Walk",
+      "Chikan Embroidery Shopping"
+    ],
+    "shopping": [
+      "Chikan Embroidery Work",
+      "Attar Perfumes",
+      "Zardozi Craft"
+    ],
+    "specialExperience": "Exploring the mysterious Bhool Bhulaiya labyrinth and tasting legendary Tunday Kebabs",
+    "provenance": "VERIFIED_EXCEL_TOP15"
+  },
+  {
+    "id": "hackathon_dest_15_prayagraj",
+    "name": "Prayagraj",
+    "city": "Prayagraj",
+    "state": "Uttar Pradesh",
+    "region": "North",
+    "type": "Spiritual & Heritage",
+    "lat": 25.4358,
+    "lng": 81.8463,
+    "image": "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=800",
+    "isHackathonFeatured": true,
+    "idealStayDays": 2,
+    "bestTimeToVisit": "Oct–Mar",
+    "attractions": [
+      "Triveni Sangam",
+      "Allahabad Fort",
+      "Anand Bhavan",
+      "All Saints Cathedral",
+      "Khusro Bagh"
+    ],
+    "temples": [
+      "Bade Hanuman Mandir",
+      "Alopi Devi Temple",
+      "Mankameshwar Temple"
+    ],
+    "monuments": [
+      "Allahabad Fort & Ashoka Pillar",
+      "Anand Bhavan",
+      "Khusro Bagh Tombs"
+    ],
+    "food": [
+      "Allahabadi Gujia & Dehati Jalebi",
+      "Churma Lassi",
+      "Kachori Sabzi"
+    ],
+    "hotels": [
+      "Hotel Kanha Shyam",
+      "Legend Hotel",
+      "Heritage Villa Prayagraj"
+    ],
+    "nature": "Sangam Confluence of Ganges, Yamuna & Saraswati",
+    "activities": [
+      "Holy Dip at Triveni Sangam",
+      "Boating to Sangam Point",
+      "Nehru Heritage House Tour"
+    ],
+    "shopping": [
+      "Religious Literature",
+      "Brass Puja Items",
+      "Guavas"
+    ],
+    "specialExperience": "Sunset boat ride to the confluence point of the holy Rivers Ganges and Yamuna",
+    "provenance": "VERIFIED_EXCEL_TOP15"
+  }
+]

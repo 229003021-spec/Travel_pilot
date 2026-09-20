@@ -1,6 +1,6 @@
 import React from "react";
 import { useTripStore, TabType } from "../../store/useTripStore";
-import { Compass, Calendar, PieChart, Map, BookOpen, GitCompare, MessageSquare, Zap, RefreshCw, Search, Building2, Utensils, Sparkles } from "lucide-react";
+import { Compass, Calendar, PieChart, Map, BookOpen, GitCompare, MessageSquare, Zap, RefreshCw, Search, Building2, Utensils, Sparkles, Heart } from "lucide-react";
 
 export const Navbar: React.FC = () => {
   const { trip, activeTab, setActiveTab, toggleAssistant, isAssistantOpen, loadDemoTrip, undoLastAction, setTrip } = useTripStore();
@@ -8,6 +8,7 @@ export const Navbar: React.FC = () => {
   const primaryNavItems: { id: TabType; label: string; icon: any }[] = [
     { id: "explore", label: "Explore", icon: Search },
     { id: "wizard", label: "Plan Trip", icon: Sparkles },
+    { id: "saved", label: "Saved", icon: Heart },
     ...(trip
       ? [
           { id: "dashboard" as TabType, label: "Dashboard", icon: Calendar },

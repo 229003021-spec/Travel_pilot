@@ -11,7 +11,7 @@ export interface ChatMessage {
   timestamp: string;
 }
 
-export type TabType = "explore" | "dashboard" | "wizard" | "budget" | "map" | "sources" | "diff" | "hotels" | "restaurants";
+export type TabType = "explore" | "dashboard" | "wizard" | "budget" | "map" | "sources" | "diff" | "hotels" | "restaurants" | "saved";
 
 interface TripState {
   trip: Trip | null;

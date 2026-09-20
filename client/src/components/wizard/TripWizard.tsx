@@ -4,6 +4,8 @@ import { fetchDestinations } from "../../services/api";
 import { ProgressChecklist } from "./ProgressChecklist";
 import { Compass, Calendar, Users, DollarSign, Heart, Sliders, MapPin, ArrowRight, AlertCircle } from "lucide-react";
 
+import top15Destinations from "../../data/top15_destinations.json";
+
 export const TripWizard: React.FC = () => {
   const { generateTrip, isGenerating, generationStage } = useTripStore();
 
@@ -125,7 +127,7 @@ export const TripWizard: React.FC = () => {
 
       <form onSubmit={handleSubmit} className="space-y-5">
         {/* Destination */}
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <label className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
             <MapPin className="w-3.5 h-3.5 text-blue-400" /> Destination
           </label>
@@ -135,9 +137,30 @@ export const TripWizard: React.FC = () => {
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
             className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-2xl px-4 py-2.5 text-sm text-white outline-none transition"
-            placeholder="Type or select destination (e.g. Jaipur, Munnar, Goa, Agra, Delhi...)"
+            placeholder="Type or select destination (e.g. Agra, Jaipur, Varanasi, Goa, Delhi...)"
             required
           />
+
+          {/* Quick Selector Pills for the 15 Hackathon Destinations */}
+          <div className="space-y-1">
+            <span className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">Quick Hackathon Destinations:</span>
+            <div className="flex flex-wrap gap-1.5 pt-1">
+              {top15Destinations.map((d) => (
+                <button
+                  type="button"
+                  key={d.id}
+                  onClick={() => setDestination(d.name)}
+                  className={`text-xs px-2.5 py-1 rounded-xl transition border font-semibold ${
+                    destination.toLowerCase() === d.name.toLowerCase()
+                      ? "bg-blue-600 text-white border-blue-500 shadow"
+                      : "bg-slate-950/80 text-slate-300 border-slate-800 hover:bg-slate-800 hover:text-white"
+                  }`}
+                >
+                  {d.name}
+                </button>
+              ))}
+            </div>
+          </div>
           <datalist id="dest-list">
             {destinations.map((d, i) => (
               <option key={i} value={d.name || d.city}>
