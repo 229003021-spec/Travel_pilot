@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useTripStore, TabType } from "./store/useTripStore";
 import { Navbar } from "./components/common/Navbar";
 import { MobileNav } from "./components/common/MobileNav";
+import { JudgeDemoBar } from "./components/common/JudgeDemoBar";
 import { ExplorePage } from "./pages/ExplorePage";
 import { SavedPage } from "./pages/SavedPage";
 import { DashboardPage } from "./pages/DashboardPage";
@@ -42,6 +43,7 @@ export const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans pb-16 md:pb-0">
+      <JudgeDemoBar />
       <Navbar />
 
       <main className="flex-1 w-full mx-auto">

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useTripStore } from "../store/useTripStore";
 import { AlertBanner } from "../components/common/AlertBanner";
+import { TripHealthBar } from "../components/dashboard/TripHealthBar";
+import { AiArchitectureCard } from "../components/assistant/AiArchitectureCard";
 import { ActivityCard } from "../components/dashboard/ActivityCard";
 import { WhyExplanationModal } from "../components/dashboard/WhyExplanationModal";
 import { DisruptionSimulatorModal } from "../components/disruption/DisruptionSimulatorModal";
@@ -45,6 +47,9 @@ export const DashboardPage: React.FC = () => {
 
   return (
     <div className="space-y-6 animate-in fade-in duration-300 pb-16">
+      {/* Trip Health Bar */}
+      <TripHealthBar />
+
       {/* Alert Banner */}
       <AlertBanner alerts={trip.alerts} />
 
@@ -235,6 +240,9 @@ export const DashboardPage: React.FC = () => {
           })
         )}
       </div>
+
+      {/* Agentic AI Architecture Section */}
+      <AiArchitectureCard />
 
       {/* Modals */}
       <WhyExplanationModal />

@@ -4,6 +4,7 @@ import { useTripStore } from "../store/useTripStore";
 import { ProvenanceBadge } from "../components/common/ProvenanceBadge";
 import { searchDestinationsApi, fetchDestinationOverviewApi } from "../services/api";
 import { searchDestinationsClient } from "../services/clientOptimizer";
+import { WhyPlanningBreaks } from "../components/landing/WhyPlanningBreaks";
 import top15Destinations from "../data/top15_destinations.json";
 
 interface DestinationItem {
@@ -363,6 +364,9 @@ export const ExplorePage: React.FC = () => {
           ))}
         </div>
       </div>
+
+      {/* Visual Problem Narrative Section */}
+      <WhyPlanningBreaks />
     </div>
   );
 };
